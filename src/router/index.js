@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import VocabPage from '../pages/VocabPage.vue'
 import ExamPage from '../pages/ExamPage.vue'
@@ -10,6 +10,6 @@ const routes = [
 ]
 
 export const router = createRouter({
-  history: createWebHistory('/nihongo-vocab/'), // Set base path for GitHub Pages
+  history: createWebHashHistory(), // ✅ Use hash mode for GitHub Pages
   routes
 })
