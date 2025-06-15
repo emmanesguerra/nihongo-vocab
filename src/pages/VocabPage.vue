@@ -7,7 +7,7 @@
             </select>
         </div>
 
-        <div class="table-responsive" style="max-height: 80vh; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 75vh; overflow-y: auto;">
             <table class="table table-striped table-bordered mb-0">
                 <thead class="table-dark sticky-top">
                     <tr>
