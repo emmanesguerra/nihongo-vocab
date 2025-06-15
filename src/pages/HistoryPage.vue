@@ -7,6 +7,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ formatDate(entry.date) }}</h5>
                     <p><strong>Score:</strong> {{ entry.score }} / {{ entry.total }}</p>
+                    <p><strong>Lesson Range:</strong> Lesson {{ entry.lessonRange[0] }} to {{ entry.lessonRange[1] }}
+                    </p>
 
                     <details>
                         <summary>🔍 Review Questions</summary>

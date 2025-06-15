@@ -24,20 +24,33 @@
 
         <div class="mt-4">
             <h5>Review:</h5>
-            <div v-for="(q, i) in questions" :key="i" class="card my-2">
-                <div class="card-body">
-                    <p><strong>Q{{ i + 1 }}. {{ q.meaning }}</strong></p>
-                    <p>
-                        Your Answer:
-                        <span :class="{
-                            'text-success': q.userAnswer === q.kana,
-                            'text-danger': q.userAnswer !== q.kana,
-                        }">
-                            {{ q.userAnswer }}
-                        </span>
-                    </p>
-                    <p v-if="q.userAnswer !== q.kana">Correct Answer: <strong>{{ q.kana }}</strong></p>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Meaning</th>
+                            <th>Your Answer</th>
+                            <th>Correct Answer</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(q, i) in questions" :key="i">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ q.meaning }}</td>
+                            <td :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
+                                {{ q.userAnswer }}
+                            </td>
+                            <td>{{ q.kana }}</td>
+                            <td>
+                                <span :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
+                                    {{ q.userAnswer === q.kana ? '✅ Correct' : '❌ Wrong' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -63,7 +76,23 @@ onMounted(() => {
     const [start, end] = quizStore.settings.lessonRange
     const filtered = vocabularies.filter(v => v.lesson >= start && v.lesson <= end)
 
-    const selected = shuffle(filtered).slice(0, totalQuestions.value)
+    let selected = shuffle(filtered)
+
+    if (selected.length < totalQuestions.value) {
+        const needed = totalQuestions.value - selected.length
+        const extras = []
+
+        const pool = filtered.length ? filtered : vocabularies
+
+        while (extras.length < needed) {
+            const random = pool[Math.floor(Math.random() * pool.length)]
+            extras.push({ ...random })
+        }
+
+        selected = [...selected, ...extras]
+    }
+
+    selected = shuffle(selected).slice(0, totalQuestions.value)
 
     questions.value = selected.map(q => {
         const wrongChoices = vocabularies
@@ -77,7 +106,7 @@ onMounted(() => {
         return {
             ...q,
             choices: allChoices,
-            userAnswer: '', // we will store the user's selected answer here
+            userAnswer: '',
         }
     })
 })
@@ -111,6 +140,7 @@ function saveExamResult() {
         date: new Date().toISOString(),
         score: score.value,
         total: totalQuestions.value,
+        lessonRange: quizStore.settings.lessonRange,
         questions: questions.value.map(q => ({
             meaning: q.meaning,
             correctAnswer: q.kana,
@@ -121,7 +151,6 @@ function saveExamResult() {
 
     const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]')
 
-    // Keep only latest 5 records
     const updated = [...existing, result].slice(-10)
 
     localStorage.setItem('quizHistory', JSON.stringify(updated))
