@@ -1,7 +1,7 @@
 export const lesson1 = [
   { lesson: 1, word: "わたし", kana: "わたし", kanji: "わたし", meaning: "I", type: "word" },
   { lesson: 1, word: "わたしたち", kana: "わたしたち", kanji: "わたしたち", meaning: "we", type: "word" },
-  { lesson: 1, word: "あなた", kana: "あんた", kanji: "あなた", meaning: "you", type: "word" },
+  { lesson: 1, word: "あなた", kana: "あなた", kanji: "あなた", meaning: "you", type: "word" },
   { lesson: 1, word: "あの人", kana: "あのひと", kanji: "あの人", meaning: "that person, he, she", type: "word" },
   { lesson: 1, word: "あの方", kana: "あのかた", kanji: "あの方", meaning: "that person, he, she (more polite)", type: "word" },
   { lesson: 1, word: "皆さん", kana: "みなさん", kanji: "皆さん", meaning: "ladies and gentlemen, all of you", type: "word" },

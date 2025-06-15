@@ -4,14 +4,14 @@
 
         <div class="card">
             <div class="card-body">
-                <p><strong>Meaning:</strong> {{ currentQuestion.meaning }}</p>
-                <p><strong>What is the correct kana?</strong></p>
+                <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
 
-                <div class="d-grid gap-2">
-                    <button v-for="(choice, i) in currentQuestion.choices" :key="i" class="btn btn-outline-primary"
-                        @click="submitAnswer(choice)">
-                        {{ choice }}
-                    </button>
+                <div class="row row-cols-2 row-cols-md-2 g-3">
+                    <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col">
+                        <button class="btn btn-outline-primary w-100 p-3" @click="submitAnswer(choice)">
+                            {{ choice }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,11 +94,18 @@ onMounted(() => {
     selected = shuffle(selected).slice(0, totalQuestions.value)
 
     questions.value = selected.map(q => {
-        const wrongChoices = vocabularies
-            .filter(v => v.kana !== q.kana)
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3)
-            .map(v => v.kana)
+        let sameTypeChoices = filtered.filter(v => v.kana !== q.kana && v.type === q.type)
+
+        // If not enough same type choices, fill in with random from other types
+        if (sameTypeChoices.length < 3) {
+            const fallback = filtered.filter(v => v.kana !== q.kana && v.type !== q.type)
+            const needed = 3 - sameTypeChoices.length
+            const extra = shuffle(fallback).slice(0, needed)
+            sameTypeChoices = [...sameTypeChoices, ...extra]
+        }
+
+        // Shuffle and pick 3 wrong choices
+        const wrongChoices = shuffle(sameTypeChoices).slice(0, 3).map(v => v.kana)
 
         const allChoices = shuffle([q.kana, ...wrongChoices])
 
