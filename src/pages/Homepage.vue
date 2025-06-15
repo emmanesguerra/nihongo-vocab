@@ -23,9 +23,9 @@
                     </div>
                 </div>
 
-                <div class="d-grid mt-4">
+                <div class="mt-4 text-center">
                     <button class="btn btn-primary" @click="startExam">
-                        🚀 Start Practice
+                        <i class="bi bi-play-fill me-2"></i> Start Practice
                     </button>
                 </div>
             </div>
@@ -34,10 +34,10 @@
         <!-- View Vocabulary Button -->
         <div class="mt-4 d-flex justify-content-center gap-3">
             <router-link to="/history" class="btn btn-outline-secondary">
-                🕘 Past Results
+                <i class="bi bi-clock-history me-1"></i> Past Results
             </router-link>
             <router-link to="/vocab" class="btn btn-outline-secondary">
-                📚 View Vocabulary
+                <i class="bi bi-journal-bookmark-fill me-1"></i> View Vocabulary
             </router-link>
         </div>
     </main>

@@ -1,6 +1,6 @@
 <template>
     <div class="container py-5">
-        <h2 class="mb-4">📜 Past Exam Results</h2>
+        <h2 class="mb-4"><i class="bi bi-journal-bookmark-fill me-1"></i> Practice Results</h2>
 
         <div v-if="history.length">
             <div v-for="(entry, index) in history" :key="index" class="card mb-4">
@@ -11,7 +11,7 @@
                     </p>
 
                     <details>
-                        <summary>🔍 Review Questions</summary>
+                        <summary><i class="bi bi-search me-1"></i> Review Questions</summary>
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered align-middle">
                                 <thead class="table-light">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <router-link to="/" class="btn btn-primary">🏠 Back to Home</router-link>
+            <router-link to="/" class="btn btn-primary"><i class="bi bi-house-door-fill"></i> Back to Home</router-link>
         </div>
     </div>
 </template>

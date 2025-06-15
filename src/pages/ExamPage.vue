@@ -17,9 +17,8 @@
         </div>
     </div>
 
-    <!-- ✅ Result Screen -->
     <div class="container py-4" v-else>
-        <h3 class="mb-3">Exam Finished ✅</h3>
+        <h3 class="mb-3">Exam Finished <i class="bi bi-check-circle-fill text-success"></i></h3>
         <p class="lead">Your score: <strong>{{ score }} / {{ totalQuestions }}</strong></p>
 
         <div class="mt-4">
@@ -44,9 +43,8 @@
                             </td>
                             <td>{{ q.kana }}</td>
                             <td>
-                                <span :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
-                                    {{ q.userAnswer === q.kana ? '✅ Correct' : '❌ Wrong' }}
-                                </span>
+                                <i v-if="q.userAnswer === q.kana" class="bi bi-check-circle-fill text-success"></i>
+                                <i v-else class="bi bi-x-circle-fill text-danger"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -54,7 +52,8 @@
             </div>
         </div>
 
-        <router-link to="/" class="btn btn-secondary mt-4">🏠 Back to Home</router-link>
+        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to
+            Home</router-link>
     </div>
 </template>
 
