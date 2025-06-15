@@ -47,8 +47,8 @@ const router = useRouter()
 const quizStore = useQuizStore()
 
 const numQuestions = ref(10)
-const lessonStart = ref(10)
-const lessonEnd = ref(10)
+const lessonStart = ref()
+const lessonEnd = ref()
 
 function startExam() {
   quizStore.setSettings(numQuestions.value, [lessonStart.value, lessonEnd.value])

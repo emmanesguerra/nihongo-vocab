@@ -89,7 +89,12 @@ function submitAnswer(selectedKana) {
     if (selectedKana === currentQuestion.value.kana) {
         score.value++
     }
+
     currentIndex.value++
+
+    if (currentIndex.value >= totalQuestions.value) {
+        saveExamResult()
+    }
 }
 
 function shuffle(array) {
@@ -100,4 +105,26 @@ function shuffle(array) {
     }
     return result
 }
+
+function saveExamResult() {
+    const result = {
+        date: new Date().toISOString(),
+        score: score.value,
+        total: totalQuestions.value,
+        questions: questions.value.map(q => ({
+            meaning: q.meaning,
+            correctAnswer: q.kana,
+            userAnswer: q.userAnswer,
+            choices: q.choices,
+        })),
+    }
+
+    const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]')
+
+    // Keep only latest 5 records
+    const updated = [...existing, result].slice(-10)
+
+    localStorage.setItem('quizHistory', JSON.stringify(updated))
+}
+
 </script>
