@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Lesson Range</label>
+                    <label class="form-label">Lesson Range (1~50)</label>
                     <div class="d-flex gap-2">
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
@@ -24,6 +24,7 @@
                 </div>
 
                 <div class="mt-4 text-center">
+                    <p v-if="errorMessage" class="text-danger text-center mb-3">{{ errorMessage }}</p>
                     <button class="btn btn-primary" @click="startExam">
                         <i class="bi bi-play-fill me-2"></i> Start Practice
                     </button>
@@ -54,8 +55,25 @@ const quizStore = useQuizStore()
 const numQuestions = ref(10)
 const lessonStart = ref()
 const lessonEnd = ref()
+const errorMessage = ref('')
 
 function startExam() {
+    errorMessage.value = ''
+
+    // Validation checks
+    if (
+        lessonStart.value === undefined ||
+        lessonEnd.value === undefined ||
+        isNaN(lessonStart.value) ||
+        isNaN(lessonEnd.value) ||
+        lessonStart.value < 1 ||
+        lessonEnd.value > 50 ||
+        lessonStart.value > lessonEnd.value
+    ) {
+        errorMessage.value = 'Please enter a valid range (1–50) where start ≤ end.'
+        return
+    }
+
     quizStore.setSettings(numQuestions.value, [lessonStart.value, lessonEnd.value])
     router.push('/exam')
 }
