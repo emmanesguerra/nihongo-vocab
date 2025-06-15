@@ -1,4 +1,4 @@
-export const vocabLesson1 = [
+export const lesson1 = [
   { lesson: 1, word: "わたし", kana: "わたし", kanji: "わたし", meaning: "I", type: "word" },
   { lesson: 1, word: "わたしたち", kana: "わたしたち", kanji: "わたしたち", meaning: "we", type: "word" },
   { lesson: 1, word: "あなた", kana: "あんた", kanji: "あなた", meaning: "you", type: "word" },

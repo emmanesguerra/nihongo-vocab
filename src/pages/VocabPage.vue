@@ -1,32 +1,41 @@
-<script setup lang="ts">
-import { vocabLesson1 } from '@/data/lessons.js'
-</script>
-
 <template>
   <div style="padding: 1rem;">
-    <h2>Lesson 1 Vocabulary</h2>
+
+    <!-- Vocabulary Table -->
+    <h3>Vocabulary List - 
+      <select id="lesson-select" v-model="selectedLesson" style="margin-left: 0.5rem; padding: 4px 8px;">
+        <option v-for="n in 50" :key="n" :value="n">Lesson {{ n }}</option>
+      </select>
+    </h3>
     <table>
       <thead>
         <tr>
-          <th>Word</th>
-          <th>Kana</th>
           <th>Kanji</th>
+          <th>Kana</th>
           <th>Meaning</th>
-          <th>Type</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in vocabLesson1" :key="index">
-          <td>{{ item.word }}</td>
-          <td>{{ item.kana }}</td>
+        <tr v-for="(item, index) in filteredVocabularies" :key="index">
           <td>{{ item.kanji }}</td>
+          <td>{{ item.kana }}</td>
           <td>{{ item.meaning }}</td>
-          <td>{{ item.type }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { vocabularies } from '@/data/vocabularies.js'
+
+const selectedLesson = ref(1)
+
+const filteredVocabularies = computed(() =>
+  vocabularies.filter(v => v.lesson === selectedLesson.value)
+)
+</script>
 
 <style scoped>
 table {
@@ -42,6 +51,6 @@ th, td {
 }
 
 th {
-  background-color: #f5f5f5;
+  background-color: #000000;
 }
 </style>

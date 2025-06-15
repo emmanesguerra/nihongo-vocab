@@ -1,0 +1,21 @@
+export const lesson25 = [
+  { lesson: 25, word: "考えます", kana: "かんがえます", kanji: "考えます", meaning: "think, consider", type: "verb" },
+  { lesson: 25, word: "着きます", kana: "つきます", kanji: "着きます", meaning: "arrive", type: "verb" },
+  { lesson: 25, word: "駅に着きます", kana: "えきにつきます", kanji: "駅に着きます", meaning: "arrive at the station", type: "expression" },
+  { lesson: 25, word: "留学します", kana: "りゅうがくします", kanji: "留学します", meaning: "study abroad", type: "verb" },
+  { lesson: 25, word: "年を取ります", kana: "としをとります", kanji: "年を取ります", meaning: "grow old", type: "expression" },
+  { lesson: 25, word: "田舎", kana: "いなか", kanji: "田舎", meaning: "countryside, hometown", type: "noun" },
+  { lesson: 25, word: "大使館", kana: "たいしかん", kanji: "大使館", meaning: "embassy", type: "noun" },
+  { lesson: 25, word: "グループ", kana: "グループ", kanji: "グループ", meaning: "group", type: "noun" },
+  { lesson: 25, word: "チャンス", kana: "チャンス", kanji: "チャンス", meaning: "chance", type: "noun" },
+  { lesson: 25, word: "億", kana: "おく", kanji: "億", meaning: "hundred million", type: "counter" },
+  { lesson: 25, word: "もし～たら", kana: "もし～たら", kanji: "もし～たら", meaning: "if ~", type: "expression" },
+  { lesson: 25, word: "いくら～でも", kana: "いくら～でも", kanji: "いくら～でも", meaning: "however ~, even if ~", type: "expression" },
+  { lesson: 25, word: "転勤", kana: "てんきん", kanji: "転勤", meaning: "transfer", type: "noun" },
+  { lesson: 25, word: "転勤します", kana: "てんきんします", kanji: "転勤します", meaning: "be transferred to another office", type: "verb" },
+  { lesson: 25, word: "こと", kana: "こと", kanji: "こと", meaning: "thing, matter", type: "noun" },
+  { lesson: 25, word: "一杯飲みましょう", kana: "いっぱいのみましょう", kanji: "一杯飲みましょう", meaning: "Let's have a drink together", type: "expression" },
+  { lesson: 25, word: "いろいろお世話になりました", kana: "いろいろおせわになりました", kanji: "いろいろお世話になりました", meaning: "Thank you for everything you have done for me", type: "expression" },
+  { lesson: 25, word: "頑張ります", kana: "がんばります", kanji: "頑張ります", meaning: "do one's best", type: "verb" },
+  { lesson: 25, word: "どうぞお元気で", kana: "どうぞおげんきで", kanji: "どうぞお元気で", meaning: "Best of luck (said when expecting a long separation)", type: "expression" }
+];
