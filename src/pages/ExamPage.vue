@@ -64,7 +64,6 @@ import { useQuizStore } from '@/stores/quizStore'
 import { vocabularies } from '@/data/vocabularies.js'
 
 const quizStore = useQuizStore()
-const lastClickedButton = ref(null)
 
 const currentIndex = ref(0)
 const score = ref(0)
@@ -165,14 +164,13 @@ function saveExamResult() {
 }
 
 function handleClick(event, choice) {
-  lastClickedButton.value = event.target
+  const btn = event.currentTarget
   submitAnswer(choice)
 
   nextTick(() => {
-    if (lastClickedButton.value) {
-      lastClickedButton.value.blur()
-      lastClickedButton.value = null
-    }
+    requestAnimationFrame(() => {
+      btn.blur()
+    })
   })
 }
 </script>
