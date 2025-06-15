@@ -8,8 +8,16 @@
 
                 <div class="row row-cols-2 row-cols-md-2 g-3">
                     <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                        <button class="btn btn-outline-primary w-100 p-3 flex-fill text-wrap" style="min-height: 70px"
-                            @click="handleClick($event, choice)">
+                        <button :class="[
+                            'btn',
+                            'w-100',
+                            'p-3',
+                            'text-wrap',
+                            'd-flex',
+                            'align-items-center',
+                            'justify-content-center',
+                            currentQuestion.userAnswer === choice ? 'btn-primary text-white' : 'btn-outline-primary'
+                        ]" style="min-height: 70px" @click="handleClick($event, choice)">
                             {{ choice }}
                         </button>
                     </div>
@@ -164,13 +172,13 @@ function saveExamResult() {
 }
 
 function handleClick(event, choice) {
-  const btn = event.currentTarget
-  submitAnswer(choice)
+    const btn = event.currentTarget
+    submitAnswer(choice)
 
-  nextTick(() => {
-    requestAnimationFrame(() => {
-      btn.blur()
+    nextTick(() => {
+        requestAnimationFrame(() => {
+            btn.blur()
+        })
     })
-  })
 }
 </script>
