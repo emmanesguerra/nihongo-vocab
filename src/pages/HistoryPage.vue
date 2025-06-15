@@ -1,9 +1,10 @@
 <template>
-    <div class="container py-5">
+    <div class="container p-3">
         <h2 class="mb-4"><i class="bi bi-journal-bookmark-fill me-1"></i> Practice Results</h2>
 
         <div v-if="history.length">
-            <div v-for="(entry, index) in history" :key="index" class="card mb-4">
+            <div v-for="(entry, index) in history" :key="index" class="card mb-4 p-1 w-100 mx-auto"
+                :class="['w-100', 'p-1', 'mb-4', 'mx-auto', 'card', 'w-100', 'w-md-75', 'w-lg-50']">
                 <div class="card-body">
                     <h5 class="card-title">{{ formatDate(entry.date) }}</h5>
                     <p><strong>Score:</strong> {{ entry.score }} / {{ entry.total }}</p>
@@ -11,7 +12,10 @@
                     </p>
 
                     <details>
-                        <summary><i class="bi bi-search me-1"></i> Review Questions</summary>
+                        <summary class="d-flex justify-content-between align-items-center custom-summary">
+                            <span><i class="bi bi-search me-1"></i> Review Questions</span>
+                            <i class="bi bi-chevron-down toggle-icon ms-2"></i>
+                        </summary>
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered align-middle">
                                 <thead class="table-light">
@@ -74,3 +78,27 @@ function formatDate(isoString) {
     return date.toLocaleString()
 }
 </script>
+
+<style scoped>
+.custom-summary {
+    list-style: none;
+    /* Removes default marker */
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+.custom-summary::-webkit-details-marker {
+    display: none;
+    /* Hides default arrow in Chrome/Safari */
+}
+
+details[open] .toggle-icon {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+}
+
+.toggle-icon {
+    transition: transform 0.3s;
+}
+
+</style>

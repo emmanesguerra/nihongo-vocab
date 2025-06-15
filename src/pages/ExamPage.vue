@@ -8,16 +8,19 @@
 
                 <div class="row row-cols-2 row-cols-md-2 g-3">
                     <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                        <button :class="[
-                            'btn',
-                            'w-100',
-                            'p-3',
-                            'text-wrap',
-                            'd-flex',
-                            'align-items-center',
-                            'justify-content-center',
-                            currentQuestion.userAnswer === choice ? 'btn-primary text-white' : 'btn-outline-primary'
-                        ]" style="min-height: 70px" @click="handleClick($event, choice)">
+                        <button 
+                            @pointerdown="touchedIndex = i"
+                            @pointerup="touchedIndex = null"
+                            @click="submitAnswer(choice)" :class="[
+                                'custom-btn',
+                                'w-100',
+                                'p-3',
+                                'text-wrap',
+                                'd-flex',
+                                'align-items-center',
+                                'justify-content-center',
+                                { 'bg-primary text-white': touchedIndex === i }
+                            ]" style="min-height: 70px">
                             {{ choice }}
                         </button>
                     </div>
@@ -76,6 +79,7 @@ const quizStore = useQuizStore()
 const currentIndex = ref(0)
 const score = ref(0)
 const questions = ref([])
+const touchedIndex = ref(null)
 
 const totalQuestions = computed(() => quizStore.settings.totalQuestions)
 const currentQuestion = computed(() => questions.value[currentIndex.value])
@@ -171,14 +175,13 @@ function saveExamResult() {
     localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
 
-function handleClick(event, choice) {
-    const btn = event.currentTarget
-    submitAnswer(choice)
-
-    nextTick(() => {
-        requestAnimationFrame(() => {
-            btn.blur()
-        })
-    })
-}
 </script>
+
+<style scoped>
+.custom-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #495057;
+    transition: background-color 0.3s, color 0.3s;
+}
+</style>
