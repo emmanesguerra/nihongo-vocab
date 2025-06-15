@@ -7,8 +7,15 @@
                 <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
 
                 <div class="row row-cols-2 row-cols-md-2 g-3">
-                    <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col">
-                        <button class="btn btn-outline-primary w-100 p-3" @click="submitAnswer(choice)">
+                    <div
+                        v-for="(choice, i) in currentQuestion.choices"
+                        :key="i"
+                        class="col"
+                    >
+                        <button
+                            class="btn btn-outline-primary w-100 p-3"
+                            @click="handleClick($event, choice)"
+                        >
                             {{ choice }}
                         </button>
                     </div>
@@ -162,4 +169,8 @@ function saveExamResult() {
     localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
 
+function handleClick(event, choice) {
+    event.target.blur() // removes focus style
+    submitAnswer(choice)
+}
 </script>
