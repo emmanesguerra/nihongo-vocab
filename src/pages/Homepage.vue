@@ -9,7 +9,8 @@
                 <div class="mb-3">
                     <label class="form-label">Number of Questions</label>
                     <select v-model="numQuestions" class="form-select">
-                        <option v-for="n in [10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}</option>
+                        <option v-for="n in [10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}
+                        </option>
                     </select>
                 </div>
 
@@ -37,8 +38,14 @@
             <router-link to="/history" class="btn btn-outline-secondary">
                 <i class="bi bi-clock-history me-1"></i> Past Results
             </router-link>
-            <router-link to="/vocab" class="btn btn-outline-secondary">
-                <i class="bi bi-journal-bookmark-fill me-1"></i> View Vocabulary
+            <router-link to="/vocab-summary" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Vocab Details
+            </router-link>
+            <router-link to="/vocab?set=book1" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Lesson 1–25
+            </router-link>
+            <router-link to="/vocab?set=book2" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Lesson 26–50
             </router-link>
         </div>
     </main>
