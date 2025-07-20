@@ -1,7 +1,7 @@
 export const lesson45 = [
   { lesson: 45, word: "謝ります", kana: "あやまります", kanji: "謝ります", meaning: "apologize", type: "verb" },
   { lesson: 45, word: "あいます", kana: "あいます", kanji: "あいます", meaning: "encounter", type: "verb" },
-  { lesson: 45, word: "事故にあいます", kana: "じこにあいます", kanji: "事故にあいます", meaning: "encounter an accident", type: "expression" },
+  { lesson: 45, word: "事故にあいます", kana: "じこにあいます", kanji: "事故にあいます", meaning: "encounter an accident", type: "phrase" },
   { lesson: 45, word: "信じます", kana: "しんじます", kanji: "信じます", meaning: "believe, trust", type: "verb" },
   { lesson: 45, word: "用意します", kana: "よういします", kanji: "用意します", meaning: "prepare", type: "verb" },
   { lesson: 45, word: "キャンセルします", kana: "キャンセルします", kanji: "キャンセルします", meaning: "cancel", type: "verb" },
@@ -9,7 +9,7 @@ export const lesson45 = [
   { lesson: 45, word: "保証書", kana: "ほしょうしょ", kanji: "保証書", meaning: "guarantee", type: "noun" },
   { lesson: 45, word: "領収書", kana: "りょうしゅうしょ", kanji: "領収書", meaning: "receipt", type: "noun" },
   { lesson: 45, word: "贈物", kana: "おくりもの", kanji: "贈物", meaning: "gift, present", type: "noun" },
-  { lesson: 45, word: "贈物をします", kana: "おくりものをします", kanji: "贈物をします", meaning: "give a present", type: "expression" },
+  { lesson: 45, word: "贈物をします", kana: "おくりものをします", kanji: "贈物をします", meaning: "give a present", type: "phrase" },
   { lesson: 45, word: "間違い電話", kana: "まちがいでんわ", kanji: "間違い電話", meaning: "wrong (telephone) number", type: "noun" },
   { lesson: 45, word: "キャンプ", kana: "キャンプ", kanji: "キャンプ", meaning: "camp", type: "noun" },
   { lesson: 45, word: "係", kana: "かかり", kanji: "係", meaning: "person in charge", type: "noun" },
@@ -19,8 +19,8 @@ export const lesson45 = [
   { lesson: 45, word: "～円札", kana: "～えんさつ", kanji: "～円札", meaning: "~ yen note, bill", type: "counter" },
   { lesson: 45, word: "ちゃんと", kana: "ちゃんと", kanji: "ちゃんと", meaning: "regularly, properly", type: "adverb" },
   { lesson: 45, word: "急に", kana: "きゅうに", kanji: "急に", meaning: "suddenly", type: "adverb" },
-  { lesson: 45, word: "楽しみにしています", kana: "たのしみにしています", kanji: "楽しみにしています", meaning: "be looking forward to, be expecting", type: "expression" },
-  { lesson: 45, word: "以上です", kana: "いじょうです", kanji: "以上です", meaning: "That's all", type: "expression" },
+  { lesson: 45, word: "楽しみにしています", kana: "たのしみにしています", kanji: "楽しみにしています", meaning: "be looking forward to, be expecting", type: "phrase" },
+  { lesson: 45, word: "以上です", kana: "いじょうです", kanji: "以上です", meaning: "That's all", type: "phrase" },
   { lesson: 45, word: "係員", kana: "かかりいん", kanji: "係員", meaning: "person in charge, attendant", type: "noun" },
   { lesson: 45, word: "コース", kana: "コース", kanji: "コース", meaning: "course", type: "noun" },
   { lesson: 45, word: "スタート", kana: "スタート", kanji: "スタート", meaning: "start", type: "noun" },
@@ -34,5 +34,5 @@ export const lesson45 = [
   { lesson: 45, word: "回答", kana: "かいとう", kanji: "回答", meaning: "answer, reply", type: "noun" },
   { lesson: 45, word: "鳴ります", kana: "なります", kanji: "鳴ります", meaning: "ring", type: "verb" },
   { lesson: 45, word: "セットします", kana: "セットします", kanji: "セットします", meaning: "set", type: "verb" },
-  { lesson: 45, word: "其れでも", kana: "それでも", kanji: "其れでも", meaning: "nevertheless, for all that", type: "conjunction" }
+  { lesson: 45, word: "其れでも", kana: "それでも", kanji: "其れでも", meaning: "nevertheless, for all that", type: "adverb" }
 ];
