@@ -3,23 +3,21 @@
         <h4 class="mb-3">Question {{ currentIndex + 1 }} of {{ totalQuestions }}</h4>
 
         <div class="card">
-            <div class="card-body">
-                <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
-            </div>
+            <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
 
             <div class="row row-cols-2 row-cols-md-3 g-3">
                 <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
                     <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
-                        @click="selectedAnswer = choice" :class="[
+                        @click="() => { selectedAnswer = choice; speak(choice) }" :class="[
                             'custom-btn',
                             'w-100',
-                            'p-3',
+                            'p-2',
                             'text-wrap',
                             'd-flex',
                             'align-items-center',
                             'justify-content-center',
                             { 'bg-primary text-white': selectedAnswer === choice }
-                        ]" style="min-height: 70px">
+                        ]" style="min-height: 50px">
                         {{ choice }}
                     </button>
                 </div>
@@ -181,6 +179,15 @@ function saveExamResult() {
     localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
 
+function speak(text) {
+    if (!window.speechSynthesis) return
+
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'ja-JP' // Japanese
+    window.speechSynthesis.cancel() // Stop previous utterances
+    window.speechSynthesis.speak(utterance)
+}
+
 </script>
 
 <style scoped>
@@ -189,6 +196,7 @@ function saveExamResult() {
     border: 1px solid #ced4da;
     color: #495057;
     transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
 }
 
 .card {
