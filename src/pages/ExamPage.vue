@@ -7,25 +7,29 @@
                 <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
             </div>
 
-                <div class="row row-cols-2 row-cols-md-3 g-3">
-                    <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                        <button 
-                            @pointerdown="touchedIndex = i"
-                            @pointerup="touchedIndex = null"
-                            @click="submitAnswer(choice)" :class="[
-                                'custom-btn',
-                                'w-100',
-                                'p-3',
-                                'text-wrap',
-                                'd-flex',
-                                'align-items-center',
-                                'justify-content-center',
-                                { 'bg-primary text-white': touchedIndex === i }
-                            ]" style="min-height: 70px">
-                            {{ choice }}
-                        </button>
-                    </div>
+            <div class="row row-cols-2 row-cols-md-3 g-3">
+                <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
+                    <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
+                        @click="selectedAnswer = choice" :class="[
+                            'custom-btn',
+                            'w-100',
+                            'p-3',
+                            'text-wrap',
+                            'd-flex',
+                            'align-items-center',
+                            'justify-content-center',
+                            { 'bg-primary text-white': selectedAnswer === choice }
+                        ]" style="min-height: 70px">
+                        {{ choice }}
+                    </button>
                 </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button class="btn btn-success btn-lg" :disabled="!selectedAnswer" @click="submitAnswer">
+                    Submit Answer
+                </button>
+            </div>
         </div>
     </div>
 
@@ -80,6 +84,7 @@ const currentIndex = ref(0)
 const score = ref(0)
 const questions = ref([])
 const touchedIndex = ref(null)
+const selectedAnswer = ref(null)
 
 const totalQuestions = computed(() => quizStore.settings.totalQuestions)
 const currentQuestion = computed(() => questions.value[currentIndex.value])
@@ -129,15 +134,17 @@ onMounted(() => {
     })
 })
 
-function submitAnswer(selectedKana) {
-    if (!currentQuestion.value) return
+function submitAnswer() {
+    if (!currentQuestion.value || selectedAnswer.value === null) return
 
-    currentQuestion.value.userAnswer = selectedKana
-    if (selectedKana === currentQuestion.value.kana) {
+    currentQuestion.value.userAnswer = selectedAnswer.value
+
+    if (selectedAnswer.value === currentQuestion.value.kana) {
         score.value++
     }
 
     currentIndex.value++
+    selectedAnswer.value = null
 
     if (currentIndex.value >= totalQuestions.value) {
         saveExamResult()
@@ -183,6 +190,7 @@ function saveExamResult() {
     color: #495057;
     transition: background-color 0.3s, color 0.3s;
 }
+
 .card {
     padding: 1rem;
 }
