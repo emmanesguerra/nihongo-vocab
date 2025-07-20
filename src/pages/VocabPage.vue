@@ -4,7 +4,7 @@
             <router-link to="/" class="btn btn-outline-secondary me-3" title="Back to Home">
                 <i class="bi bi-house-door-fill"></i>
             </router-link>
-            <h3 class="mb-0">Vocabulary List</h3>
+            <h3 class="mb-0">Vocabs Lists ({{ totalItems }}) </h3>
             <select id="lesson-select" v-model="selectedLesson" class="form-select d-inline w-auto ms-3">
                 <option v-for="n in 50" :key="n" :value="n">Lesson {{ n }}</option>
             </select>
@@ -22,7 +22,7 @@
                 <tbody>
                     <tr v-for="(item, index) in filteredVocabularies" :key="index">
                         <td>{{ item.kanji }}</td>
-                        <td>{{ item.kana }}</td>
+                        <td @click="speak(item.kana)" style="cursor: pointer;" class="text-primary">{{ item.kana }}</td>
                         <td class="text-start">{{ item.meaning }}</td>
                     </tr>
                 </tbody>
@@ -37,8 +37,18 @@ import { ref, computed } from 'vue'
 import { vocabularies } from '@/data/vocabularies.js'
 
 const selectedLesson = ref(1)
+const totalItems = computed(() => filteredVocabularies.value.length)
+const totalAllVocabularies = computed(() => vocabularies.length)
 
 const filteredVocabularies = computed(() =>
     vocabularies.filter(v => v.lesson === selectedLesson.value)
 )
+
+function speak(text) {
+    if (!window.speechSynthesis) return
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'ja-JP'
+    window.speechSynthesis.cancel()
+    window.speechSynthesis.speak(utterance)
+}
 </script>
