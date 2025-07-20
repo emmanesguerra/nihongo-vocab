@@ -53,8 +53,17 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted  } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
+import { registerVoiceChecker  } from '@/core/utils/speech'
+
+onMounted(() => {
+    registerVoiceChecker((hasJapanese) => {
+        if (!hasJapanese) {
+            alert('⚠️ Japanese voice is not available on this device.\nSpeech function may not work properly.\nPlease install Japanese TTS in your device settings.');
+        }
+    })
+})
 
 const router = useRouter()
 const quizStore = useQuizStore()

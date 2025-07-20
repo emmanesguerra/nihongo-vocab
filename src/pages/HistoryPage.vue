@@ -1,7 +1,11 @@
 <template>
     <div class="container p-3">
-        <h2 class="mb-4"><i class="bi bi-journal-bookmark-fill me-1"></i> Practice Results</h2>
-
+        <h2 class="mb-4">
+            <router-link to="/" class="me-3" title="Back to Home">
+                <i class="bi bi-journal-bookmark-fill me-1"></i>
+            </router-link>
+            Practice Results
+        </h2>
         <div v-if="history.length">
             <div v-for="(entry, index) in history" :key="index" class="card mb-4 p-1 w-100 mx-auto"
                 :class="['w-100', 'p-1', 'mb-4', 'mx-auto', 'card', 'w-100', 'w-md-75', 'w-lg-50']">
@@ -30,7 +34,8 @@
                                     <tr v-for="(q, i) in entry.questions" :key="i">
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ q.meaning }}</td>
-                                        <td @click="speak(q.userAnswer)" :class="q.userAnswer === q.correctAnswer ? 'text-success' : 'text-danger'">
+                                        <td @click="speak(q.userAnswer)"
+                                            :class="q.userAnswer === q.correctAnswer ? 'text-success' : 'text-danger'">
                                             {{ q.userAnswer }}
                                         </td>
                                         <td @click="speak(q.correctAnswer)">{{ q.correctAnswer }}</td>
@@ -101,5 +106,4 @@ details[open] .toggle-icon {
 .toggle-icon {
     transition: transform 0.3s;
 }
-
 </style>
