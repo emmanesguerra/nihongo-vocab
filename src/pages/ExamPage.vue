@@ -52,10 +52,10 @@
                         <tr v-for="(q, i) in questions" :key="i">
                             <td>{{ i + 1 }}</td>
                             <td>{{ q.meaning }}</td>
-                            <td :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
+                            <td @click="speak(q.userAnswer)" :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
                                 {{ q.userAnswer }}
                             </td>
-                            <td>{{ q.kana }}</td>
+                            <td @click="speak(q.kana)">{{ q.kana }}</td>
                             <td>
                                 <i v-if="q.userAnswer === q.kana" class="bi bi-check-circle-fill text-success"></i>
                                 <i v-else class="bi bi-x-circle-fill text-danger"></i>
@@ -75,6 +75,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
 import { vocabularies } from '@/data/vocabularies.js'
+import { speak } from '@/core/utils/speech'
 
 const quizStore = useQuizStore()
 
@@ -177,15 +178,6 @@ function saveExamResult() {
     const updated = [...existing, result].slice(-10)
 
     localStorage.setItem('quizHistory', JSON.stringify(updated))
-}
-
-function speak(text) {
-    if (!window.speechSynthesis) return
-
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = 'ja-JP' // Japanese
-    window.speechSynthesis.cancel() // Stop previous utterances
-    window.speechSynthesis.speak(utterance)
 }
 
 </script>
