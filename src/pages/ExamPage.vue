@@ -84,6 +84,7 @@ const score = ref(0)
 const questions = ref([])
 const touchedIndex = ref(null)
 const selectedAnswer = ref(null)
+const choicesCount = 5
 
 const totalQuestions = computed(() => quizStore.settings.totalQuestions)
 const currentQuestion = computed(() => questions.value[currentIndex.value])
@@ -114,15 +115,15 @@ onMounted(() => {
         let sameTypeChoices = filtered.filter(v => v.kana !== q.kana && v.type === q.type)
 
         // If not enough same type choices, fill in with random from other types
-        if (sameTypeChoices.length < 5) {
+        if (sameTypeChoices.length < choicesCount) {
             const fallback = filtered.filter(v => v.kana !== q.kana && v.type !== q.type)
-            const needed = 5 - sameTypeChoices.length
+            const needed = choicesCount - sameTypeChoices.length
             const extra = shuffle(fallback).slice(0, needed)
             sameTypeChoices = [...sameTypeChoices, ...extra]
         }
 
         // Shuffle and pick 5 wrong choices
-        const wrongChoices = shuffle(sameTypeChoices).slice(0, 5).map(v => v.kana)
+        const wrongChoices = shuffle(sameTypeChoices).slice(0, choicesCount).map(v => v.kana)
         const allChoices = shuffle([q.kana, ...wrongChoices])
 
         return {
