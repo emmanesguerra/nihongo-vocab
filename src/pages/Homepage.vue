@@ -9,7 +9,8 @@
                 <div class="mb-3">
                     <label class="form-label">Number of Questions</label>
                     <select v-model="numQuestions" class="form-select">
-                        <option v-for="n in [5, 10, 20, 50]" :key="n" :value="n">{{ n }}</option>
+                        <option v-for="n in [10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}
+                        </option>
                     </select>
                 </div>
 
@@ -19,7 +20,7 @@
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
                         <input type="number" v-model.number="lessonEnd" class="form-control" min="1" max="50"
-                            placeholder="End">
+                            placeholder="End (optional)">
                     </div>
                 </div>
 
@@ -37,8 +38,14 @@
             <router-link to="/history" class="btn btn-outline-secondary">
                 <i class="bi bi-clock-history me-1"></i> Past Results
             </router-link>
-            <router-link to="/vocab" class="btn btn-outline-secondary">
-                <i class="bi bi-journal-bookmark-fill me-1"></i> View Vocabulary
+            <router-link to="/vocab-summary" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Vocab Details
+            </router-link>
+            <router-link to="/vocab?set=book1" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Lesson 1–25
+            </router-link>
+            <router-link to="/vocab?set=book2" class="btn btn-outline-secondary">
+                <i class="bi bi-journal-bookmark me-1"></i> Lesson 26–50
             </router-link>
         </div>
     </main>
@@ -60,21 +67,46 @@ const errorMessage = ref('')
 function startExam() {
     errorMessage.value = ''
 
-    // Validation checks
+    // Basic check: Start must be valid
     if (
         lessonStart.value === undefined ||
-        lessonEnd.value === undefined ||
         isNaN(lessonStart.value) ||
-        isNaN(lessonEnd.value) ||
         lessonStart.value < 1 ||
-        lessonEnd.value > 50 ||
-        lessonStart.value > lessonEnd.value
+        lessonStart.value > 50
     ) {
-        errorMessage.value = 'Please enter a valid range (1–50) where start ≤ end.'
+        errorMessage.value = 'Please enter a valid START lesson (1–50).'
         return
     }
 
-    quizStore.setSettings(numQuestions.value, [lessonStart.value, lessonEnd.value])
+    // If End is filled, validate it too
+    if (
+        lessonEnd.value !== undefined &&
+        lessonEnd.value !== null &&
+        (
+            isNaN(lessonEnd.value) ||
+            lessonEnd.value < 1 ||
+            lessonEnd.value > 50
+        )
+    ) {
+        errorMessage.value = 'END lesson must be a number between 1 and 50.'
+        return
+    }
+
+    // If both Start and End are given, check order
+    if (
+        lessonEnd.value !== undefined &&
+        lessonEnd.value !== null &&
+        lessonStart.value > lessonEnd.value
+    ) {
+        errorMessage.value = 'START lesson must be less than or equal to END lesson.'
+        return
+    }
+
+    // Determine final range
+    const start = lessonStart.value
+    const end = (lessonEnd.value !== undefined && lessonEnd.value !== null) ? lessonEnd.value : start
+
+    quizStore.setSettings(numQuestions.value, [start, end])
     router.push('/exam')
 }
 </script>

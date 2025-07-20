@@ -30,10 +30,10 @@
                                     <tr v-for="(q, i) in entry.questions" :key="i">
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ q.meaning }}</td>
-                                        <td :class="q.userAnswer === q.correctAnswer ? 'text-success' : 'text-danger'">
+                                        <td @click="speak(q.userAnswer)" :class="q.userAnswer === q.correctAnswer ? 'text-success' : 'text-danger'">
                                             {{ q.userAnswer }}
                                         </td>
-                                        <td>{{ q.correctAnswer }}</td>
+                                        <td @click="speak(q.correctAnswer)">{{ q.correctAnswer }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -55,6 +55,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { speak } from '@/core/utils/speech'
 
 const history = ref([])
 

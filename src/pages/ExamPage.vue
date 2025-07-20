@@ -3,28 +3,30 @@
         <h4 class="mb-3">Question {{ currentIndex + 1 }} of {{ totalQuestions }}</h4>
 
         <div class="card">
-            <div class="card-body">
-                <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
+            <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
 
-                <div class="row row-cols-2 row-cols-md-2 g-3">
-                    <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                        <button 
-                            @pointerdown="touchedIndex = i"
-                            @pointerup="touchedIndex = null"
-                            @click="submitAnswer(choice)" :class="[
-                                'custom-btn',
-                                'w-100',
-                                'p-3',
-                                'text-wrap',
-                                'd-flex',
-                                'align-items-center',
-                                'justify-content-center',
-                                { 'bg-primary text-white': touchedIndex === i }
-                            ]" style="min-height: 70px">
-                            {{ choice }}
-                        </button>
-                    </div>
+            <div class="row row-cols-2 row-cols-md-3 g-3">
+                <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
+                    <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
+                        @click="() => { selectedAnswer = choice; speak(choice) }" :class="[
+                            'custom-btn',
+                            'w-100',
+                            'p-2',
+                            'text-wrap',
+                            'd-flex',
+                            'align-items-center',
+                            'justify-content-center',
+                            { 'bg-primary text-white': selectedAnswer === choice }
+                        ]" style="min-height: 50px">
+                        {{ choice }}
+                    </button>
                 </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button class="btn btn-success btn-lg" :disabled="!selectedAnswer" @click="submitAnswer">
+                    Submit Answer
+                </button>
             </div>
         </div>
     </div>
@@ -50,10 +52,10 @@
                         <tr v-for="(q, i) in questions" :key="i">
                             <td>{{ i + 1 }}</td>
                             <td>{{ q.meaning }}</td>
-                            <td :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
+                            <td @click="speak(q.userAnswer)" :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
                                 {{ q.userAnswer }}
                             </td>
-                            <td>{{ q.kana }}</td>
+                            <td @click="speak(q.kana)">{{ q.kana }}</td>
                             <td>
                                 <i v-if="q.userAnswer === q.kana" class="bi bi-check-circle-fill text-success"></i>
                                 <i v-else class="bi bi-x-circle-fill text-danger"></i>
@@ -73,6 +75,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
 import { vocabularies } from '@/data/vocabularies.js'
+import { speak } from '@/core/utils/speech'
 
 const quizStore = useQuizStore()
 
@@ -80,6 +83,7 @@ const currentIndex = ref(0)
 const score = ref(0)
 const questions = ref([])
 const touchedIndex = ref(null)
+const selectedAnswer = ref(null)
 
 const totalQuestions = computed(() => quizStore.settings.totalQuestions)
 const currentQuestion = computed(() => questions.value[currentIndex.value])
@@ -110,16 +114,15 @@ onMounted(() => {
         let sameTypeChoices = filtered.filter(v => v.kana !== q.kana && v.type === q.type)
 
         // If not enough same type choices, fill in with random from other types
-        if (sameTypeChoices.length < 3) {
+        if (sameTypeChoices.length < 5) {
             const fallback = filtered.filter(v => v.kana !== q.kana && v.type !== q.type)
-            const needed = 3 - sameTypeChoices.length
+            const needed = 5 - sameTypeChoices.length
             const extra = shuffle(fallback).slice(0, needed)
             sameTypeChoices = [...sameTypeChoices, ...extra]
         }
 
-        // Shuffle and pick 3 wrong choices
-        const wrongChoices = shuffle(sameTypeChoices).slice(0, 3).map(v => v.kana)
-
+        // Shuffle and pick 5 wrong choices
+        const wrongChoices = shuffle(sameTypeChoices).slice(0, 5).map(v => v.kana)
         const allChoices = shuffle([q.kana, ...wrongChoices])
 
         return {
@@ -130,15 +133,17 @@ onMounted(() => {
     })
 })
 
-function submitAnswer(selectedKana) {
-    if (!currentQuestion.value) return
+function submitAnswer() {
+    if (!currentQuestion.value || selectedAnswer.value === null) return
 
-    currentQuestion.value.userAnswer = selectedKana
-    if (selectedKana === currentQuestion.value.kana) {
+    currentQuestion.value.userAnswer = selectedAnswer.value
+
+    if (selectedAnswer.value === currentQuestion.value.kana) {
         score.value++
     }
 
     currentIndex.value++
+    selectedAnswer.value = null
 
     if (currentIndex.value >= totalQuestions.value) {
         saveExamResult()
@@ -183,5 +188,10 @@ function saveExamResult() {
     border: 1px solid #ced4da;
     color: #495057;
     transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
+}
+
+.card {
+    padding: 1rem;
 }
 </style>

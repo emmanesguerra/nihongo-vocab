@@ -13,12 +13,12 @@ export const lesson48 = [
   { lesson: 48, word: "再入国ビザ", kana: "さいにゅうこくビザ", kanji: "再入国ビザ", meaning: "re-entry visa", type: "noun" },
   { lesson: 48, word: "自由に", kana: "じゆうに", kanji: "自由に", meaning: "freely", type: "adverb" },
   { lesson: 48, word: "～間", kana: "～かん", kanji: "～間", meaning: "for ~ (referring to duration)", type: "suffix" },
-  { lesson: 48, word: "いいことですね", kana: "いいことですね", kanji: "いいことですね", meaning: "That's good", type: "expression" },
-  { lesson: 48, word: "お忙しいですか", kana: "おいそがしいですか", kanji: "お忙しいですか", meaning: "Are you busy? (used when talking to someone senior or older)", type: "expression" },
-  { lesson: 48, word: "久しぶり", kana: "ひさしぶり", kanji: "久しぶり", meaning: "after a long time", type: "expression" },
+  { lesson: 48, word: "いいことですね", kana: "いいことですね", kanji: "いいことですね", meaning: "That's good", type: "phrase" },
+  { lesson: 48, word: "お忙しいですか", kana: "おいそがしいですか", kanji: "お忙しいですか", meaning: "Are you busy? (used when talking to someone senior or older)", type: "phrase" },
+  { lesson: 48, word: "久しぶり", kana: "ひさしぶり", kanji: "久しぶり", meaning: "after a long time", type: "phrase" },
   { lesson: 48, word: "営業", kana: "えいぎょう", kanji: "営業", meaning: "business sales", type: "noun" },
-  { lesson: 48, word: "それまでに", kana: "それまでに", kanji: "それまでに", meaning: "by that time", type: "expression" },
-  { lesson: 48, word: "かまいません", kana: "かまいません", kanji: "かまいません", meaning: "It's all right, It doesn't matter", type: "expression" },
+  { lesson: 48, word: "それまでに", kana: "それまでに", kanji: "それまでに", meaning: "by that time", type: "phrase" },
+  { lesson: 48, word: "かまいません", kana: "かまいません", kanji: "かまいません", meaning: "It's all right, It doesn't matter", type: "phrase" },
   { lesson: 48, word: "楽しみます", kana: "たのしみます", kanji: "楽しみます", meaning: "enjoy oneself", type: "verb" },
   { lesson: 48, word: "元々", kana: "もともと", kanji: "元々", meaning: "originally", type: "adverb" },
   { lesson: 48, word: "～世紀", kana: "～せいき", kanji: "～世紀", meaning: "~th century", type: "suffix" },
@@ -31,5 +31,5 @@ export const lesson48 = [
   { lesson: 48, word: "姿", kana: "すがた", kanji: "姿", meaning: "figure, appearance", type: "noun" },
   { lesson: 48, word: "心", kana: "こころ", kanji: "心", meaning: "heart, mind", type: "noun" },
   { lesson: 48, word: "とらえます", kana: "とらえます", kanji: "とらえます", meaning: "catch", type: "verb" },
-  { lesson: 48, word: "～によって", kana: "～によって", kanji: "～によって", meaning: "for ~", type: "expression" }
+  { lesson: 48, word: "～によって", kana: "～によって", kanji: "～によって", meaning: "for ~", type: "phrase" }
 ];
