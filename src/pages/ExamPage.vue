@@ -5,8 +5,9 @@
         <div class="card">
             <div class="card-body">
                 <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
+            </div>
 
-                <div class="row row-cols-2 row-cols-md-2 g-3">
+                <div class="row row-cols-2 row-cols-md-3 g-3">
                     <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
                         <button 
                             @pointerdown="touchedIndex = i"
@@ -25,7 +26,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -110,16 +110,15 @@ onMounted(() => {
         let sameTypeChoices = filtered.filter(v => v.kana !== q.kana && v.type === q.type)
 
         // If not enough same type choices, fill in with random from other types
-        if (sameTypeChoices.length < 3) {
+        if (sameTypeChoices.length < 5) {
             const fallback = filtered.filter(v => v.kana !== q.kana && v.type !== q.type)
-            const needed = 3 - sameTypeChoices.length
+            const needed = 5 - sameTypeChoices.length
             const extra = shuffle(fallback).slice(0, needed)
             sameTypeChoices = [...sameTypeChoices, ...extra]
         }
 
-        // Shuffle and pick 3 wrong choices
-        const wrongChoices = shuffle(sameTypeChoices).slice(0, 3).map(v => v.kana)
-
+        // Shuffle and pick 5 wrong choices
+        const wrongChoices = shuffle(sameTypeChoices).slice(0, 5).map(v => v.kana)
         const allChoices = shuffle([q.kana, ...wrongChoices])
 
         return {
@@ -183,5 +182,8 @@ function saveExamResult() {
     border: 1px solid #ced4da;
     color: #495057;
     transition: background-color 0.3s, color 0.3s;
+}
+.card {
+    padding: 1rem;
 }
 </style>
