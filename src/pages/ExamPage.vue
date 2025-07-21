@@ -2,7 +2,39 @@
     <div class="container py-4" v-if="currentQuestion">
         <h4 class="mb-3">Question {{ currentIndex + 1 }} of {{ totalQuestions }}</h4>
 
-        <div class="card">
+        <!-- KANJI QUESTION DISPLAY -->
+        <div v-if="currentQuestion.type === 'kanji'" class="card">
+            <p class="text-center">Meaning: {{ currentQuestion.meaning }}</p>
+            <p class="text-center">Onyomi: {{ currentQuestion.onyomi }}</p>
+            <p class="text-center">Kunyomi: {{ currentQuestion.kunyomi }}</p>
+
+            <div class="row row-cols-2 row-cols-md-3 g-3 mt-3">
+                <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
+                    <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
+                        @click="() => { selectedAnswer = choice; }" :class="[
+                            'custom-btn',
+                            'w-100',
+                            'p-2',
+                            'text-wrap',
+                            'd-flex',
+                            'align-items-center',
+                            'justify-content-center',
+                            { 'bg-primary text-white': selectedAnswer === choice }
+                        ]" style="min-height: 50px">
+                        {{ choice }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button class="btn btn-success btn-lg" :disabled="!selectedAnswer" @click="submitAnswer">
+                    Submit Answer
+                </button>
+            </div>
+        </div>
+
+        <!-- NORMAL VOCAB/PHRASE DISPLAY -->
+        <div v-else class="card">
             <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
 
             <div class="row row-cols-2 row-cols-md-3 g-3">
@@ -52,12 +84,16 @@
                         <tr v-for="(q, i) in questions" :key="i">
                             <td>{{ i + 1 }}</td>
                             <td>{{ q.meaning }}</td>
-                            <td @click="speak(q.userAnswer)" :class="q.userAnswer === q.kana ? 'text-success' : 'text-danger'">
+                            <td @click="speak(q.userAnswer)"
+                                :class="q.userAnswer === (q.kanji || q.kana) ? 'text-success' : 'text-danger'">
                                 {{ q.userAnswer }}
                             </td>
-                            <td @click="speak(q.kana)">{{ q.kana }}</td>
+                            <td @click="speak(q.kanji || q.kana)">
+                                {{ q.kanji || q.kana }}
+                            </td>
                             <td>
-                                <i v-if="q.userAnswer === q.kana" class="bi bi-check-circle-fill text-success"></i>
+                                <i v-if="q.userAnswer === (q.kanji || q.kana)"
+                                    class="bi bi-check-circle-fill text-success"></i>
                                 <i v-else class="bi bi-x-circle-fill text-danger"></i>
                             </td>
                         </tr>
@@ -112,19 +148,31 @@ onMounted(() => {
     selected = shuffle(selected).slice(0, totalQuestions.value)
 
     questions.value = selected.map(q => {
-        let sameTypeChoices = filtered.filter(v => v.kana !== q.kana && v.type === q.type)
+        let sameTypeChoices = filtered.filter(v =>
+            (q.type === 'kanji' ? v.kanji !== q.kanji : v.kana !== q.kana) &&
+            v.type === q.type
+        )
 
-        // If not enough same type choices, fill in with random from other types
         if (sameTypeChoices.length < choicesCount) {
-            const fallback = filtered.filter(v => v.kana !== q.kana && v.type !== q.type)
-            const needed = choicesCount - sameTypeChoices.length
+            const fallback = filtered.filter(v =>
+                (q.type === 'kanji' ? v.kanji !== q.kanji : v.kana !== q.kana) &&
+                v.type !== q.type
+            )
+            const needed = (choicesCount + 1) - sameTypeChoices.length
             const extra = shuffle(fallback).slice(0, needed)
             sameTypeChoices = [...sameTypeChoices, ...extra]
         }
 
-        // Shuffle and pick 5 wrong choices
-        const wrongChoices = shuffle(sameTypeChoices).slice(0, choicesCount).map(v => v.kana)
-        const allChoices = shuffle([q.kana, ...wrongChoices])
+        // Prepare wrong choices based on type
+        const wrongChoices = shuffle(sameTypeChoices).slice(0, choicesCount).map(v =>
+            q.type === 'kanji' ? v.kanji : v.kana
+        )
+
+        // Combine correct + wrong choices and shuffle
+        const allChoices = shuffle([
+            q.type === 'kanji' ? q.kanji : q.kana,
+            ...wrongChoices
+        ])
 
         return {
             ...q,
@@ -139,7 +187,10 @@ function submitAnswer() {
 
     currentQuestion.value.userAnswer = selectedAnswer.value
 
-    if (selectedAnswer.value === currentQuestion.value.kana) {
+    if (
+        (currentQuestion.value.type === 'kanji' && selectedAnswer.value === currentQuestion.value.kanji) ||
+        (currentQuestion.value.type !== 'kanji' && selectedAnswer.value === currentQuestion.value.kana)
+    ) {
         score.value++
     }
 

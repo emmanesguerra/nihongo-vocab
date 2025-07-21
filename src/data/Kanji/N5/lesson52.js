@@ -1,0 +1,18 @@
+export const lesson52 = [
+  { lesson: 52, kanji: "月", onyomi: "ゲツ、 ガツ", kunyomi: "つき", meaning: "month, moon", type: "kanji" },
+  { lesson: 52, kanji: "分", onyomi: "ブン、 フン、 ブ", kunyomi: "わ(ける)", meaning: "part, minute of time, understand", type: "kanji" },
+  { lesson: 52, kanji: "後", onyomi: "ゴ、 コウ", kunyomi: "のち、 うし(ろ)、 あと", meaning: "behind, back, later", type: "kanji" },
+  { lesson: 52, kanji: "前", onyomi: "ゼン", kunyomi: "まえ", meaning: "in front, before", type: "kanji" },
+  { lesson: 52, kanji: "生", onyomi: "セイ、 ショウ", kunyomi: "い(きる)、 う(む)、 お(う)、 は(える)、 なま", meaning: "life, genuine, birth", type: "kanji" },
+  { lesson: 52, kanji: "五", onyomi: "ゴ", kunyomi: "いつ(つ)", meaning: "five, 5", type: "kanji" },
+  { lesson: 52, kanji: "間", onyomi: "カン、 ケン", kunyomi: "あいだ、 ま、 あい", meaning: "interval, space", type: "kanji" },
+  { lesson: 52, kanji: "上", onyomi: "ジョウ、 ショウ、 シャン", kunyomi: "うえ、 うわ-、 かみ、 あ(げる)、 のぼ(る)、 たてまつ(る)", meaning: "above, up", type: "kanji" },
+  { lesson: 52, kanji: "東", onyomi: "トウ", kunyomi: "ひがし", meaning: "east", type: "kanji" },
+  { lesson: 52, kanji: "四", onyomi: "シ", kunyomi: "よ(つ)、 よん", meaning: "four, 4", type: "kanji" },
+  { lesson: 52, kanji: "今", onyomi: "コン、 キン", kunyomi: "いま", meaning: "now; the present", type: "kanji" },
+  { lesson: 52, kanji: "金", onyomi: "キン、 コン、 ゴン", kunyomi: "かね、 かな-、 -がね", meaning: "gold", type: "kanji" },
+  { lesson: 52, kanji: "九", onyomi: "キュウ、 ク", kunyomi: "ここの(つ)", meaning: "nine, 9", type: "kanji" },
+  { lesson: 52, kanji: "入", onyomi: "ニュウ", kunyomi: "い(る)、はい(る)", meaning: "enter, insert", type: "kanji" },
+  { lesson: 52, kanji: "学", onyomi: "ガク", kunyomi: "まな(ぶ)", meaning: "study, learning, science", type: "kanji" },
+  { lesson: 52, kanji: "高", onyomi: "コウ", kunyomi: "たか(い)", meaning: "tall, high, expensive", type: "kanji" },
+];

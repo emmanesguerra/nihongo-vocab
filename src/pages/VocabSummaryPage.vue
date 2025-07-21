@@ -42,23 +42,30 @@
             <table class="table table-bordered table-sm">
                 <thead class="table-light">
                     <tr>
+                        <th>Level</th>
                         <th>Lesson</th>
                         <th>Count</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(count, lesson) in lessonCounts" :key="lesson">
-                        <td>Lesson {{ lesson }}</td>
-                        <td>{{ count }}</td>
+                        <td :class="getLevelClass(lesson)">{{ getLessonLevel(lesson) }}</td>
+                        <td :class="getLevelClass(lesson)">Lesson {{ lesson }}</td>
+                        <td :class="getLevelClass(lesson)">{{ count }}</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <router-link to="/" class="btn btn-primary"><i class="bi bi-house-door-fill"></i> Back to Home</router-link>
         </div>
     </div>
 </template>
 
 
-<script setup>
+<script setup lang="ts">
+
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { vocabularies } from '@/data/vocabularies.js'
@@ -88,4 +95,33 @@ const lessonCounts = computed(() => {
     }
     return counts
 })
+const getLessonLevel = (lesson) => {
+    const num = Number(lesson)
+
+    if (num >= 1 && num <= 25) return 'N5'
+    if (num >= 26 && num <= 50) return 'N4'
+    if (num >= 51 && num <= 55) return 'N5 Kanji'
+    if (num >= 56 && num <= 65) return 'N4 Kanji'
+
+    return 'Unknown'
+}
+
+const getLevelClass = (lesson: number) => {
+  if (lesson >= 1 && lesson <= 25) return 'n5-row';
+  if (lesson >= 26 && lesson <= 50) return 'n4-row';
+  if (lesson >= 51 && lesson <= 55) return 'n5-row'; // N5 Kanji
+  if (lesson >= 56 && lesson <= 65) return 'n4-row'; // N4 Kanji
+  return '';
+};
+
 </script>
+
+<style scoped>
+.n5-row {
+  background-color: #ffe5b4; 
+}
+
+.n4-row {
+  background-color: #d3f9d8;
+}
+</style>

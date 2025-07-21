@@ -1,0 +1,18 @@
+export const lesson53 = [
+  { lesson: 53, kanji: "円", onyomi: "エン", kunyomi: "まる(い)", meaning: "circle, yen, round", type: "kanji" },
+  { lesson: 53, kanji: "子", onyomi: "シ、 ス、 ツ", kunyomi: "こ、 ね", meaning: "child", type: "kanji" },
+  { lesson: 53, kanji: "外", onyomi: "ガイ、 ゲ", kunyomi: "そと、 ほか、 はず(す)、 と-", meaning: "outside", type: "kanji" },
+  { lesson: 53, kanji: "八", onyomi: "ハチ", kunyomi: "や(つ)、 よう", meaning: "eight, 8", type: "kanji" },
+  { lesson: 53, kanji: "六", onyomi: "ロク", kunyomi: "む(つ)、 むい", meaning: "six, 6", type: "kanji" },
+  { lesson: 53, kanji: "下", onyomi: "カ、 ゲ", kunyomi: "した、 しも、 もと、 さ(げる)、 くだ(る)、 お(ろす)", meaning: "below, down, descend, give, low, inferior", type: "kanji" },
+  { lesson: 53, kanji: "来", onyomi: "ライ、 タイ", kunyomi: "く.る、 きた.る、 き、 こ", meaning: "come, due, next, cause, become", type: "kanji" },
+  { lesson: 53, kanji: "気", onyomi: "キ、 ケ", kunyomi: "いき", meaning: "spirit, mind, air, atmosphere, mood", type: "kanji" },
+  { lesson: 53, kanji: "小", onyomi: "ショウ", kunyomi: "ちい(さい)、 こ-、 お-、 さ-", meaning: "little, small", type: "kanji" },
+  { lesson: 53, kanji: "七", onyomi: "シチ", kunyomi: "なな(つ)、 なの", meaning: "seven, 7", type: "kanji" },
+  { lesson: 53, kanji: "山", onyomi: "サン、 セン", kunyomi: "やま", meaning: "mountain", type: "kanji" },
+  { lesson: 53, kanji: "話", onyomi: "ワ", kunyomi: "はな(す)、 はなし", meaning: "tale, talk", type: "kanji" },
+  { lesson: 53, kanji: "女", onyomi: "ジョ", kunyomi: "おんな、 め", meaning: "woman, female", type: "kanji" },
+  { lesson: 53, kanji: "北", onyomi: "ホク", kunyomi: "きた", meaning: "north", type: "kanji" },
+  { lesson: 53, kanji: "午", onyomi: "ゴ", kunyomi: "うま", meaning: "noon, sign of the horse", type: "kanji" },
+  { lesson: 53, kanji: "百", onyomi: "ヒャク、 ビャク", kunyomi: "もも", meaning: "hundred", type: "kanji" },
+];

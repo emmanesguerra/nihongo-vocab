@@ -1,0 +1,18 @@
+export const lesson54 = [
+  { lesson: 54, kanji: "書", onyomi: "ショ", kunyomi: "か(く)", meaning: "write", type: "kanji" },
+  { lesson: 54, kanji: "先", onyomi: "セン", kunyomi: "さき、 ま(ず)", meaning: "before, ahead, previous, future, precedence", type: "kanji" },
+  { lesson: 54, kanji: "名", onyomi: "メイ、 ミョウ", kunyomi: "な", meaning: "name, noted, distinguished, reputation", type: "kanji" },
+  { lesson: 54, kanji: "川", onyomi: "セン", kunyomi: "かわ", meaning: "river, stream", type: "kanji" },
+  { lesson: 54, kanji: "千", onyomi: "セン", kunyomi: "ち", meaning: "thousand", type: "kanji" },
+  { lesson: 54, kanji: "水", onyomi: "スイ", kunyomi: "みず", meaning: "water", type: "kanji" },
+  { lesson: 54, kanji: "半", onyomi: "ハン", kunyomi: "なか(ば)", meaning: "half, middle, odd number, semi-", type: "kanji" },
+  { lesson: 54, kanji: "男", onyomi: "ダン、 ナン", kunyomi: "おとこ、 お", meaning: "male; man", type: "kanji" },
+  { lesson: 54, kanji: "西", onyomi: "セイ、 サイ", kunyomi: "にし", meaning: "west", type: "kanji" },
+  { lesson: 54, kanji: "電", onyomi: "デン", kunyomi: "", meaning: "electricity; electric powered", type: "kanji" },
+  { lesson: 54, kanji: "校", onyomi: "コウ", kunyomi: "", meaning: "school, exam", type: "kanji" },
+  { lesson: 54, kanji: "語", onyomi: "ゴ", kunyomi: "かた(る)", meaning: "word, speech, language", type: "kanji" },
+  { lesson: 54, kanji: "土", onyomi: "ド、 ト", kunyomi: "つち", meaning: "soil, earth, ground", type: "kanji" },
+  { lesson: 54, kanji: "木", onyomi: "ボク、 モク", kunyomi: "き、 こ-", meaning: "tree, wood", type: "kanji" },
+  { lesson: 54, kanji: "聞", onyomi: "ブン、 モン", kunyomi: "き(く)", meaning: "to hear; to listen; to ask", type: "kanji" },
+  { lesson: 54, kanji: "食", onyomi: "ショク、 ジキ", kunyomi: "く(う)、 た(べる)、 は(む)", meaning: "eat, food", type: "kanji" },
+];

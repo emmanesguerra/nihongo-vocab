@@ -1,13 +1,13 @@
 <template>
     <main class="container text-center py-5">
-        <h1>Minna no Nihongo I & II</h1>
+        <h1>みんあの日本語 I & II</h1>
         <h4 class="mb-4">Vocabulary Practice</h4>
 
         <!-- Exam Setup Form -->
-        <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card mx-auto" style="max-width: 450px;">
             <div class="card-body text-start">
                 <div class="mb-3">
-                    <label class="form-label">Number of Questions</label>
+                    <label class="form-label"><strong>Number of Questions</strong></label>
                     <select v-model="numQuestions" class="form-select">
                         <option v-for="n in [10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}
                         </option>
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Lesson Range (1~50)</label>
+                    <label class="form-label"><strong>Vocabulary</strong>【1~50】<strong>Kanji</strong>【51~65】</label>
                     <div class="d-flex gap-2">
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
@@ -34,18 +34,28 @@
         </div>
 
         <!-- View Vocabulary Button -->
-        <div class="mt-4 d-flex justify-content-center gap-3">
-            <router-link to="/history" class="btn btn-outline-secondary">
+        <div class="mt-2 d-flex justify-content-center gap-2">
+            <router-link to="/history" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-clock-history me-1"></i> Past Results
             </router-link>
-            <router-link to="/vocab-summary" class="btn btn-outline-secondary">
+            <router-link to="/vocab-summary" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-journal-bookmark me-1"></i> Vocab Details
             </router-link>
-            <router-link to="/vocab?set=book1" class="btn btn-outline-secondary">
-                <i class="bi bi-journal-bookmark me-1"></i> Lesson 1–25
+        </div>
+        <div class="mt-2 d-flex justify-content-center gap-2">
+            <router-link to="/vocab-list?set=book1" class="btn btn-outline-secondary w-50">
+                <i class="bi bi-journal-bookmark me-1"></i> Lessons 01–25
             </router-link>
-            <router-link to="/vocab?set=book2" class="btn btn-outline-secondary">
-                <i class="bi bi-journal-bookmark me-1"></i> Lesson 26–50
+            <router-link to="/vocab-list?set=book2" class="btn btn-outline-secondary w-50">
+                <i class="bi bi-journal-bookmark me-1"></i> Lessons 26–50
+            </router-link>
+        </div>
+        <div class="mt-2 d-flex justify-content-center gap-2">
+            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50">
+                <i class="bi bi-journal-bookmark me-1"></i> Kanji 51–55
+            </router-link>
+            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50">
+                <i class="bi bi-journal-bookmark me-1"></i> Kanji 56–65
             </router-link>
         </div>
     </main>
@@ -81,9 +91,9 @@ function startExam() {
         lessonStart.value === undefined ||
         isNaN(lessonStart.value) ||
         lessonStart.value < 1 ||
-        lessonStart.value > 50
+        lessonStart.value > 65
     ) {
-        errorMessage.value = 'Please enter a valid START lesson (1–50).'
+        errorMessage.value = 'Please enter a valid START lesson (1–65).'
         return
     }
 
@@ -94,10 +104,10 @@ function startExam() {
         (
             isNaN(lessonEnd.value) ||
             lessonEnd.value < 1 ||
-            lessonEnd.value > 50
+            lessonEnd.value > 65
         )
     ) {
-        errorMessage.value = 'END lesson must be a number between 1 and 50.'
+        errorMessage.value = 'END lesson must be a number between 1 and 65.'
         return
     }
 
