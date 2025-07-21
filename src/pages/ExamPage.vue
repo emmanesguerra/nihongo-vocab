@@ -63,6 +63,7 @@
         </div>
     </div>
 
+    <!-- REVIEW SECTION -->
     <div class="container py-4" v-else>
         <h3 class="mb-3">Exam Finished <i class="bi bi-check-circle-fill text-success"></i></h3>
         <p class="lead">Your score: <strong>{{ score }} / {{ totalQuestions }}</strong></p>
@@ -84,16 +85,18 @@
                         <tr v-for="(q, i) in questions" :key="i">
                             <td>{{ i + 1 }}</td>
                             <td>{{ q.meaning }}</td>
-                            <td @click="speak(q.userAnswer)"
-                                :class="q.userAnswer === (q.kanji || q.kana) ? 'text-success' : 'text-danger'">
+                            <td
+                                @click="speak(q.userAnswer)"
+                                :class="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana) ? 'text-success' : 'text-danger'"
+                            >
                                 {{ q.userAnswer }}
                             </td>
-                            <td @click="speak(q.kanji || q.kana)">
-                                {{ q.kanji || q.kana }}
+                            <td @click="speak(q.type === 'kanji' ? q.kanji : q.kana)">
+                                {{ q.type === 'kanji' ? q.kanji : q.kana }}
                             </td>
                             <td>
-                                <i v-if="q.userAnswer === (q.kanji || q.kana)"
-                                    class="bi bi-check-circle-fill text-success"></i>
+                                <i v-if="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana)"
+                                   class="bi bi-check-circle-fill text-success"></i>
                                 <i v-else class="bi bi-x-circle-fill text-danger"></i>
                             </td>
                         </tr>
@@ -102,8 +105,7 @@
             </div>
         </div>
 
-        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to
-            Home</router-link>
+        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to Home</router-link>
     </div>
 </template>
 
@@ -134,7 +136,6 @@ onMounted(() => {
     if (selected.length < totalQuestions.value) {
         const needed = totalQuestions.value - selected.length
         const extras = []
-
         const pool = filtered.length ? filtered : vocabularies
 
         while (extras.length < needed) {
@@ -163,12 +164,10 @@ onMounted(() => {
             sameTypeChoices = [...sameTypeChoices, ...extra]
         }
 
-        // Prepare wrong choices based on type
         const wrongChoices = shuffle(sameTypeChoices).slice(0, choicesCount).map(v =>
             q.type === 'kanji' ? v.kanji : v.kana
         )
 
-        // Combine correct + wrong choices and shuffle
         const allChoices = shuffle([
             q.type === 'kanji' ? q.kanji : q.kana,
             ...wrongChoices
@@ -206,7 +205,7 @@ function shuffle(array) {
     const result = array.slice()
     for (let i = result.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-            ;[result[i], result[j]] = [result[j], result[i]]
+        ;[result[i], result[j]] = [result[j], result[i]]
     }
     return result
 }
@@ -219,19 +218,20 @@ function saveExamResult() {
         lessonRange: quizStore.settings.lessonRange,
         questions: questions.value.map(q => ({
             meaning: q.meaning,
-            correctAnswer: q.kana,
+            correctAnswer: q.type === 'kanji' ? q.kanji : q.kana,
             userAnswer: q.userAnswer,
             choices: q.choices,
+            type: q.type,
+            kanji: q.kanji,
+            kana: q.kana,
         })),
     }
 
     const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]')
-
     const updated = [...existing, result].slice(-10)
 
     localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
-
 </script>
 
 <style scoped>
