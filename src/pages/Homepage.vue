@@ -43,18 +43,18 @@
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/vocab?set=book1" class="btn btn-outline-secondary w-50">
+            <router-link to="/vocab-list?set=book1" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-journal-bookmark me-1"></i> Lessons 01–25
             </router-link>
-            <router-link to="/vocab?set=book2" class="btn btn-outline-secondary w-50">
+            <router-link to="/vocab-list?set=book2" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-journal-bookmark me-1"></i> Lessons 26–50
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/vocab?set=book3" class="btn btn-outline-secondary w-50">
+            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 51–55
             </router-link>
-            <router-link to="/vocab?set=book4" class="btn btn-outline-secondary w-50">
+            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 56–65
             </router-link>
         </div>
