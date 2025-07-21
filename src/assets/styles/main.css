@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'NotoSerifJP';
+  src: url('@/assets/fonts/NotoSerifJP-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KaiseiTokumin';
+  src: url('@/assets/fonts/KaiseiTokumin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

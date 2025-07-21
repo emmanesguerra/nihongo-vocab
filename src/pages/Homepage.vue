@@ -1,6 +1,6 @@
 <template>
     <main class="container text-center py-5">
-        <h1>みんあの日本語 I & II</h1>
+        <h1 class="nwroman">みんなの日本語 I & II</h1>
         <h4 class="mb-4">Vocabulary Practice</h4>
 
         <!-- Exam Setup Form -->
@@ -129,3 +129,9 @@ function startExam() {
     router.push('/exam')
 }
 </script>
+
+<style scoped>
+.nwroman {
+    font-family: 'NotoSerifJP', Times, serif;
+}
+</style>
