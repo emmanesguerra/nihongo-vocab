@@ -48,10 +48,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(count, lesson) in lessonCounts" :key="lesson" :class="getLevelClass(lesson)">
-                        <td>{{ getLessonLevel(lesson) }}</td>
-                        <td>Lesson {{ lesson }}</td>
-                        <td>{{ count }}</td>
+                    <tr v-for="(count, lesson) in lessonCounts" :key="lesson">
+                        <td :class="getLevelClass(lesson)">{{ getLessonLevel(lesson) }}</td>
+                        <td :class="getLevelClass(lesson)">Lesson {{ lesson }}</td>
+                        <td :class="getLevelClass(lesson)">{{ count }}</td>
                     </tr>
                 </tbody>
             </table>

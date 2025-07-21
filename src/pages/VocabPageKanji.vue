@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in filteredVocabularies" :key="index">
-                        <td @click="speak(item.kanji)" class="fw-bold fs-5">{{ item.kanji }}</td>
+                        <td @click="speak(item.kanji)" class="fw-bold fs-5" style="cursor: pointer;" >{{ item.kanji }}</td>
                         <td @click="speak(item.onyomi)">{{ item.onyomi }}</td>
                         <td @click="speak(item.kunyomi)">{{ item.kunyomi }}</td>
                         <td class="text-start">{{ item.meaning }}</td>
