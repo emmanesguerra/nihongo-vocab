@@ -13,7 +13,7 @@ export default defineConfig({
         name: 'Nihongo Vocab',
         short_name: 'NihongoVocab',
         description: 'Japanese Vocabulary Practice App',
-        background_color: '#000',
+        background_color: '#fff',
         theme_color: '#1976d2',  // your preferred theme color
         icons: [
           {
