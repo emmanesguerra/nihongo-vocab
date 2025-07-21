@@ -54,6 +54,10 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="text-center mt-4">
+            <router-link to="/" class="btn btn-primary"><i class="bi bi-house-door-fill"></i> Back to Home</router-link>
+        </div>
     </div>
 </template>
 

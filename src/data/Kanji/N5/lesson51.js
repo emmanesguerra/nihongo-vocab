@@ -1,0 +1,18 @@
+export const lesson51 = [
+  { lesson: "51 - Kanji N5", kanji: "日", onyomi: "ニチ, ジツ", kunyomi: "ひ, -び, -か", meaning: "day, sun, Japan, counter for days", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "一", onyomi: "イチ", kunyomi: "ひと(つ)", meaning: "one", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "国", onyomi: "コク", kunyomi: "くに", meaning: "country", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "人", onyomi: "ジン、 ニン", kunyomi: "ひと", meaning: "person", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "年", onyomi: "ネン", kunyomi: "とし", meaning: "year, counter for years", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "大", onyomi: "ダイ、 タイ", kunyomi: "おお(きい)", meaning: "large, big", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "十", onyomi: "ジュウ", kunyomi: "とお、 と", meaning: "ten, 10", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "二", onyomi: "ニ、 ジ", kunyomi: "ふた(つ)", meaning: "two, 2", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "本", onyomi: "ホン", kunyomi: "もと", meaning: "book, present, true, counter for long cylindrical things", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "中", onyomi: "チュウ", kunyomi: "なか、 うち、 あた(る)", meaning: "in, inside, middle, mean, center", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "長", onyomi: "チョウ", kunyomi: "なが(い)、 おさ", meaning: "long, leader, superior, senior", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "出", onyomi: "シュツ、 スイ", kunyomi: "で(る)、 だ(す)、 い(でる)", meaning: "exit, leave, go out", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "三", onyomi: "サン", kunyomi: "み(つ)", meaning: "three, 3", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "時", onyomi: "ジ", kunyomi: "とき、 -どき", meaning: "time, hour", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "行", onyomi: "コウ、 ギョウ、 アン", kunyomi: "い(く)、 ゆ(く)、 おこな(う)", meaning: "going, journey, carry out, line, row", type: "kanji" },
+  { lesson: "51 - Kanji N5", kanji: "見", onyomi: "ケン", kunyomi: "み(る)、 み(せる)", meaning: "see, hopes, chances, idea, opinion, look at, visible", type: "kanji" },
+];

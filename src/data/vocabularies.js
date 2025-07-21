@@ -48,6 +48,21 @@ import { lesson47 } from './lesson47'
 import { lesson48 } from './lesson48'
 import { lesson49 } from './lesson49'
 import { lesson50 } from './lesson50'
+import { lesson51 } from './Kanji/N5/lesson51'
+import { lesson52 } from './Kanji/N5/lesson52'
+import { lesson53 } from './Kanji/N5/lesson53'
+import { lesson54 } from './Kanji/N5/lesson54'
+import { lesson55 } from './Kanji/N5/lesson55'
+import { lesson56 } from './Kanji/N4/lesson56'
+import { lesson57 } from './Kanji/N4/lesson57'
+import { lesson58 } from './Kanji/N4/lesson58'
+import { lesson59 } from './Kanji/N4/lesson59'
+import { lesson60 } from './Kanji/N4/lesson60'
+import { lesson61 } from './Kanji/N4/lesson61'
+import { lesson62 } from './Kanji/N4/lesson62' 
+import { lesson63 } from './Kanji/N4/lesson63' 
+import { lesson64 } from './Kanji/N4/lesson64' 
+import { lesson65 } from './Kanji/N4/lesson65' 
 
 export const vocabularies = [
   ...lesson1,
@@ -100,4 +115,19 @@ export const vocabularies = [
   ...lesson48,
   ...lesson49,
   ...lesson50,
+  ...lesson51,
+  ...lesson52,
+  ...lesson53,
+  ...lesson54,
+  ...lesson55,
+  ...lesson56,
+  ...lesson57,
+  ...lesson58,
+  ...lesson59,
+  ...lesson60,
+  ...lesson61,
+  ...lesson62,
+  ...lesson63,
+  ...lesson64,
+  ...lesson65,
 ];
