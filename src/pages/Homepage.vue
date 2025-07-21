@@ -9,7 +9,7 @@
                 <div class="mb-3">
                     <label class="form-label"><strong>Number of Questions</strong></label>
                     <select v-model="numQuestions" class="form-select">
-                        <option v-for="n in [10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}
+                        <option v-for="n in [5, 10, 20, 50, 100, 200, 500, 1000, 2000]" :key="n" :value="n">{{ n }}
                         </option>
                     </select>
                 </div>
@@ -78,7 +78,7 @@ onMounted(() => {
 const router = useRouter()
 const quizStore = useQuizStore()
 
-const numQuestions = ref(10)
+const numQuestions = ref(20)
 const lessonStart = ref()
 const lessonEnd = ref()
 const errorMessage = ref('')

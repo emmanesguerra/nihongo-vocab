@@ -85,10 +85,8 @@
                         <tr v-for="(q, i) in questions" :key="i">
                             <td>{{ i + 1 }}</td>
                             <td>{{ q.meaning }}</td>
-                            <td
-                                @click="speak(q.userAnswer)"
-                                :class="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana) ? 'text-success' : 'text-danger'"
-                            >
+                            <td @click="speak(q.userAnswer)"
+                                :class="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana) ? 'text-success' : 'text-danger'">
                                 {{ q.userAnswer }}
                             </td>
                             <td @click="speak(q.type === 'kanji' ? q.kanji : q.kana)">
@@ -96,7 +94,7 @@
                             </td>
                             <td>
                                 <i v-if="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana)"
-                                   class="bi bi-check-circle-fill text-success"></i>
+                                    class="bi bi-check-circle-fill text-success"></i>
                                 <i v-else class="bi bi-x-circle-fill text-danger"></i>
                             </td>
                         </tr>
@@ -105,27 +103,28 @@
             </div>
         </div>
 
-        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to Home</router-link>
+        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to
+            Home</router-link>
     </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { useQuizStore } from '@/stores/quizStore'
 import { vocabularies } from '@/data/vocabularies.js'
 import { speak } from '@/core/utils/speech'
 
 const quizStore = useQuizStore()
-
 const currentIndex = ref(0)
 const score = ref(0)
 const questions = ref([])
 const touchedIndex = ref(null)
 const selectedAnswer = ref(null)
 const choicesCount = 5
-
 const totalQuestions = computed(() => quizStore.settings.totalQuestions)
 const currentQuestion = computed(() => questions.value[currentIndex.value])
+const isExamFinished = ref(false)
 
 onMounted(() => {
     const [start, end] = quizStore.settings.lessonRange
@@ -179,6 +178,33 @@ onMounted(() => {
             userAnswer: '',
         }
     })
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('beforeunload', handleBeforeUnload)
+})
+
+function handleBeforeUnload(e) {
+    if (!isExamFinished.value) {
+        e.preventDefault()
+        e.returnValue = ''
+    }
+}
+
+// Vue Router navigation guard (for back/forward/route change)
+onBeforeRouteLeave((to, from, next) => {
+    if (!isExamFinished.value) {
+        const answer = window.confirm('You are about to leave the exam. Your progress will be lost. Continue?')
+        if (answer) {
+            next()
+        } else {
+            next(false)
+        }
+    } else {
+        next()
+    }
 })
 
 function submitAnswer() {
@@ -197,6 +223,8 @@ function submitAnswer() {
     selectedAnswer.value = null
 
     if (currentIndex.value >= totalQuestions.value) {
+        isExamFinished.value = true
+        window.removeEventListener('beforeunload', handleBeforeUnload)
         saveExamResult()
     }
 }
@@ -205,7 +233,7 @@ function shuffle(array) {
     const result = array.slice()
     for (let i = result.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[result[i], result[j]] = [result[j], result[i]]
+            ;[result[i], result[j]] = [result[j], result[i]]
     }
     return result
 }
