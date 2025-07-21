@@ -43,18 +43,18 @@
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/vocab-list?set=book1" class="btn btn-outline-secondary w-50">
+            <router-link to="/vocab-list?set=book1" class="btn btn-outline-secondary w-50 n5-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Lessons 01–25
             </router-link>
-            <router-link to="/vocab-list?set=book2" class="btn btn-outline-secondary w-50">
+            <router-link to="/vocab-list?set=book2" class="btn btn-outline-secondary w-50 n4-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Lessons 26–50
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50">
+            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50 n5-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 51–55
             </router-link>
-            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50">
+            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50 n4-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 56–65
             </router-link>
         </div>
@@ -133,5 +133,12 @@ function startExam() {
 <style scoped>
 .nwroman {
     font-family: 'NotoSerifJP', Times, serif;
+}
+.n5-row {
+  background-color: #ffe5b4; 
+}
+
+.n4-row {
+  background-color: #d3f9d8;
 }
 </style>
