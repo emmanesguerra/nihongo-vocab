@@ -63,6 +63,7 @@ import { lesson62 } from './Kanji/N4/lesson62'
 import { lesson63 } from './Kanji/N4/lesson63' 
 import { lesson64 } from './Kanji/N4/lesson64' 
 import { lesson65 } from './Kanji/N4/lesson65' 
+import { lesson66 } from './Kanji/IntroToKanjiNihongoals/lesson66'
 
 export const vocabularies = [
   ...lesson1,
@@ -130,4 +131,5 @@ export const vocabularies = [
   ...lesson63,
   ...lesson64,
   ...lesson65,
+  ...lesson66,
 ];

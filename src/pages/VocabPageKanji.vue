@@ -48,7 +48,7 @@ const selectedLesson = ref(1)
 const lessonRange = computed(() => {
     const set = route.query.set
     if (set === 'book1') return Array.from({ length: 5 }, (_, i) => i + 51) // 51–55
-    if (set === 'book2') return Array.from({ length: 10 }, (_, i) => i + 56) // 56–65
+    if (set === 'book2') return Array.from({ length: 11 }, (_, i) => i + 56) // 56–65
     return Array.from({ length: 15 }, (_, i) => i + 51) // default: full range 51–65
 })
 
