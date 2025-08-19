@@ -27,7 +27,7 @@ export const lesson11 = [
   { lesson: 11, kanji: null, kana: "カレーライス", meaning: "curry and rice", pos: "noun" },
   { lesson: 11, kanji: null, kana: "アイスクリーム", meaning: "ice cream", pos: "noun" },
   { lesson: 11, kanji: "切手", kana: "きって", meaning: "postage stamp", pos: "noun" },
-  { lesson: 11, kanji: "はがき", kana: "はがき", meaning: "post card", pos: "noun" },
+  { lesson: 11, kanji: null, kana: "はがき", meaning: "post card", pos: "noun" },
   { lesson: 11, kanji: "封筒", kana: "ふうとう", meaning: "envelope", pos: "noun" },
   { lesson: 11, kanji: "速達", kana: "そくたつ", meaning: "special delivery", pos: "noun" },
   { lesson: 11, kanji: "書留", kana: "かきとめ", meaning: "registered mail", pos: "noun" },

@@ -25,8 +25,8 @@ export const lesson20 = [
   { lesson: 20, kanji: null, kana: "みんなで", meaning: "all together", pos: "phrase" },
   { lesson: 20, kanji: "～けど", kana: "～けど", meaning: "but (informal equivalent of ～が)", pos: "suffix" },
   { lesson: 20, kanji: "国へ帰るの", kana: "くにへかえるの", meaning: "Are you going back to your country?", pos: "phrase" },
-  { lesson: 20, kanji: "どうするの", kana: "どうするの", meaning: "What will you do?", pos: "phrase" },
-  { lesson: 20, kanji: "どうしようかな", kana: "どうしようかな", meaning: "What shall I do?", pos: "phrase" },
-  { lesson: 20, kanji: "よかったら", kana: "よかったら", meaning: "if you like", pos: "phrase" },
+  { lesson: 20, kanji: null, kana: "どうするの", meaning: "What will you do?", pos: "phrase" },
+  { lesson: 20, kanji: null, kana: "どうしようかな", meaning: "What shall I do?", pos: "phrase" },
+  { lesson: 20, kanji: null, kana: "よかったら", meaning: "if you like", pos: "phrase" },
   { lesson: 20, kanji: null, kana: "いろいろ", meaning: "various", pos: "adjective" }
 ];

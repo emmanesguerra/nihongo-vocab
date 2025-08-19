@@ -18,7 +18,7 @@ export const lesson24 = [
   { lesson: 24, kanji: "お菓子", kana: "おかし", meaning: "sweets, snacks", pos: "noun" },
   { lesson: 24, kanji: "全部", kana: "ぜんぶ", meaning: "all", pos: "noun" },
   { lesson: 24, kanji: "自分で", kana: "じぶんで", meaning: "by oneself", pos: "phrase" },
-  { lesson: 24, kanji: "ほかに", kana: "ほかに", meaning: "besides", pos: "phrase" },
+  { lesson: 24, kanji: null, kana: "ほかに", meaning: "besides", pos: "phrase" },
   { lesson: 24, kanji: "ワゴン車", kana: "ワゴンしゃ", meaning: "station wagon", pos: "noun" },
   { lesson: 24, kanji: "弁当", kana: "べんとう", meaning: "box lunch", pos: "noun" }
 ];

@@ -1,6 +1,6 @@
 export const lesson9 = [
   { lesson: 9, kanji: "分かります", kana: "わかります", meaning: "understand", pos: "verb" },
-  { lesson: 9, kanji: "あります", kana: "あります", meaning: "have", pos: "verb" },
+  { lesson: 9, kanji: null, kana: "あります", meaning: "have", pos: "verb" },
   { lesson: 9, kanji: "好き", kana: "すき", meaning: "like", pos: "adjective" },
   { lesson: 9, kanji: "嫌い", kana: "きらい", meaning: "dislike", pos: "adjective" },
   { lesson: 9, kanji: "上手", kana: "じょうず", meaning: "good at", pos: "adjective" },
@@ -10,7 +10,7 @@ export const lesson9 = [
   { lesson: 9, kanji: null, kana: "スポーツ", meaning: "sport", pos: "noun" },
   { lesson: 9, kanji: null, kana: "スポーツをします", meaning: "play sports", pos: "verb" },
   { lesson: 9, kanji: "野球", kana: "やきゅう", meaning: "baseball", pos: "noun" },
-  { lesson: 9, kanji: "野球をします", kana: "やきゅうをします", meaning: "play baseball", pos: "verb" },
+  { lesson: 9, kanji: null, kana: "やきゅうをします", meaning: "play baseball", pos: "verb" },
   { lesson: 9, kanji: null, kana: "ダンス", meaning: "dance", pos: "noun" },
   { lesson: 9, kanji: null, kana: "ダンスをします", meaning: "dance", pos: "verb" },
   { lesson: 9, kanji: "音楽", kana: "おんがく", meaning: "music", pos: "noun" },

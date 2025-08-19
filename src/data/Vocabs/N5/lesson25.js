@@ -13,7 +13,7 @@ export const lesson25 = [
   { lesson: 25, kanji: null, kana: "いくら～でも", meaning: "however ~, even if ~", pos: "phrase" },
   { lesson: 25, kanji: "転勤", kana: "てんきん", meaning: "transfer", pos: "noun" },
   { lesson: 25, kanji: "転勤します", kana: "てんきんします", meaning: "be transferred to another office", pos: "verb" },
-  { lesson: 25, kanji: "こと", kana: "こと", meaning: "thing, matter", pos: "noun" },
+  { lesson: 25, kanji: null, kana: "こと", meaning: "thing, matter", pos: "noun" },
   { lesson: 25, kanji: "一杯飲みましょう", kana: "いっぱいのみましょう", meaning: "Let's have a drink together", pos: "phrase" },
   { lesson: 25, kanji: "いろいろお世話になりました", kana: "いろいろおせわになりました", meaning: "Thank you for everything you have done for me", pos: "phrase" },
   { lesson: 25, kanji: "頑張ります", kana: "がんばります", meaning: "do one's best", pos: "verb" },

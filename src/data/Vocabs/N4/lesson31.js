@@ -41,6 +41,6 @@ export const lesson31 = [
   { lesson: 31, kanji: "集まります", kana: "あつまります", meaning: "gather", pos: "verb" },
   { lesson: 31, kanji: "美しい", kana: "うつくしい", meaning: "beautiful", pos: "adjective" },
   { lesson: 31, kanji: "自然", kana: "しぜん", meaning: "nature", pos: "noun" },
-  { lesson: 31, kanji: "すばらしさ", kana: "すばらしさ", meaning: "goodness, virtue", pos: "noun" },
+  { lesson: 31, kanji: null, kana: "すばらしさ", meaning: "goodness, virtue", pos: "noun" },
   { lesson: 31, kanji: "気がつきます", kana: "きがつきます", meaning: "notice, become aware of", pos: "verb" }
 ];

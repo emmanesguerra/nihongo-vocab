@@ -1,6 +1,6 @@
 export const lesson50 = [
   { lesson: 50, kanji: "参ります", kana: "まいります", meaning: "go, come (humble)", pos: "verb" },
-  { lesson: 50, kanji: "おります", kana: "おります", meaning: "be (humble)", pos: "verb" },
+  { lesson: 50, kanji: null, kana: "おります", meaning: "be (humble)", pos: "verb" },
   { lesson: 50, kanji: "頂きます", kana: "いただきます", meaning: "eat, drink, receive (humble)", pos: "verb" },
   { lesson: 50, kanji: "申します", kana: "もうします", meaning: "say (humble)", pos: "verb" },
   { lesson: 50, kanji: "致します", kana: "いたします", meaning: "do (humble)", pos: "verb" },
@@ -8,13 +8,13 @@ export const lesson50 = [
   { lesson: 50, kanji: "存じます", kana: "ぞんじます", meaning: "know (humble)", pos: "verb" },
   { lesson: 50, kanji: "伺います", kana: "うかがいます", meaning: "ask, hear, visit (humble)", pos: "verb" },
   { lesson: 50, kanji: "お目にかかります", kana: "おめにかかります", meaning: "meet (humble)", pos: "verb" },
-  { lesson: 50, kanji: "ございます", kana: "ございます", meaning: "be (polite)", pos: "verb" },
-  { lesson: 50, kanji: "～でございます", kana: "～でございます", meaning: "be (polite)", pos: "phrase" },
+  { lesson: 50, kanji: null, kana: "ございます", meaning: "be (polite)", pos: "verb" },
+  { lesson: 50, kanji: null, kana: "～でございます", meaning: "be (polite)", pos: "phrase" },
   { lesson: 50, kanji: "私", kana: "わたくし", meaning: "I (humble)", pos: "noun" },
-  { lesson: 50, kanji: "ガイド", kana: "ガイド", meaning: "guide", pos: "noun" },
+  { lesson: 50, kanji: null, kana: "ガイド", meaning: "guide", pos: "noun" },
   { lesson: 50, kanji: "お宅", kana: "おたく", meaning: "someone else's house", pos: "noun" },
   { lesson: 50, kanji: "郊外", kana: "こうがい", meaning: "suburbs", pos: "noun" },
-  { lesson: 50, kanji: "アルバム", kana: "アルバム", meaning: "album", pos: "noun" },
+  { lesson: 50, kanji: null, kana: "アルバム", meaning: "album", pos: "noun" },
   { lesson: 50, kanji: "再来週", kana: "さらいしゅう", meaning: "the week after next", pos: "noun" },
   { lesson: 50, kanji: "再来月", kana: "さらいげつ", meaning: "the month after next", pos: "noun" },
   { lesson: 50, kanji: "再来年", kana: "さらいねん", meaning: "the year after next", pos: "noun" },
@@ -36,7 +36,7 @@ export const lesson50 = [
   { lesson: 50, kanji: "夢が叶います", kana: "ゆめがかないます", meaning: "a dream comes true", pos: "phrase" },
   { lesson: 50, kanji: "一言よろしいでしょうか", kana: "ひとことよろしいでしょうか", meaning: "May I say one word?", pos: "phrase" },
   { lesson: 50, kanji: "協力します", kana: "きょうりょくします", meaning: "cooperate", pos: "verb" },
-  { lesson: 50, kanji: "心から", kana: "こころから", meaning: "from my heart", pos: "adverb" },
+  { lesson: 50, kanji: null, kana: "心から", meaning: "from my heart", pos: "adverb" },
   { lesson: 50, kanji: "感謝します", kana: "かんしゃします", meaning: "be grateful, be thankful", pos: "verb" },
   { lesson: 50, kanji: "お礼", kana: "おれい", meaning: "gratitude, thanks", pos: "noun" },
   { lesson: 50, kanji: "拝啓", kana: "はいけい", meaning: "Dear ~", pos: "phrase" },
@@ -46,5 +46,5 @@ export const lesson50 = [
   { lesson: 50, kanji: "生かします", kana: "いかします", meaning: "make good use of", pos: "verb" },
   { lesson: 50, kanji: "お城", kana: "おしろ", meaning: "castle", pos: "noun" },
   { lesson: 50, kanji: "敬具", kana: "けいぐ", meaning: "Sincerely yours", pos: "phrase" },
-  { lesson: 50, kanji: "ミュンヘン", kana: "ミュンヘン", meaning: "Munich (in Germany)", pos: "noun" }
+  { lesson: 50, kanji: null, kana: "ミュンヘン", meaning: "Munich (in Germany)", pos: "noun" }
 ];

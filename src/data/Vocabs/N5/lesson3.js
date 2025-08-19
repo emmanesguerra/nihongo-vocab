@@ -1,4 +1,3 @@
-// { lesson: number, kanji: string | null, kana: string, meaning: string, pos: string 
 export const lesson3 = [
   { lesson: 3, kanji: null, kana: "ここ", meaning: "here, this place", pos: "pronoun" },
   { lesson: 3, kanji: null, kana: "そこ", meaning: "there, that place near you", pos: "pronoun" },
@@ -27,7 +26,7 @@ export const lesson3 = [
   { lesson: 3, kanji: "靴", kana: "くつ", meaning: "shoes", pos: "noun" },
   { lesson: 3, kanji: null, kana: "ネクタイ", meaning: "necktie", pos: "noun" },
   { lesson: 3, kanji: null, kana: "ワイン", meaning: "wine", pos: "noun" },
-  { lesson: 3, kanji: "たばこ", kana: "たばこ", meaning: "tobacco, cigarette", pos: "noun" },
+  { lesson: 3, kanji: "煙草", kana: "たばこ", meaning: "tobacco, cigarette", pos: "noun" },
   { lesson: 3, kanji: "売り場", kana: "うりば", meaning: "department, counter (in a department store)", pos: "noun" },
   { lesson: 3, kanji: "地下", kana: "ちか", meaning: "basement", pos: "noun" },
   { lesson: 3, kanji: "～階", kana: "～かい", meaning: "~th floor", pos: "counter" },
@@ -39,7 +38,7 @@ export const lesson3 = [
   { lesson: 3, kanji: "万", kana: "まん", meaning: "ten thousand", pos: "number" },
   { lesson: 3, kanji: null, kana: "すみません", meaning: "excuse me / I'm sorry", pos: "expression" },
   { lesson: 3, kanji: null, kana: "～でございます", meaning: "(polite form of 'desu')", pos: "expression" },
-  { lesson: 3, kanji: "～を見せてください", kana: "～をみせてください", meaning: "please show me ~", pos: "phrase" },
+  { lesson: 3, kanji: null, kana: "～をみせてください", meaning: "please show me ~", pos: "phrase" },
   { lesson: 3, kanji: null, kana: "じゃ", meaning: "well, then, in that case", pos: "expression" },
-  { lesson: 3, kanji: "～をください", kana: "～をください", meaning: "give me ~, please.", pos: "phrase" }
+  { lesson: 3, kanji: null, kana: "～をください", meaning: "give me ~, please.", pos: "phrase" }
 ];

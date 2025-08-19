@@ -1,7 +1,7 @@
 export const lesson17 = [
   { lesson: 17, kanji: "覚えます", kana: "おぼえます", meaning: "memorize", pos: "verb" },
   { lesson: 17, kanji: "忘れます", kana: "わすれます", meaning: "forget", pos: "verb" },
-  { lesson: 17, kanji: "なくします", kana: "なくします", meaning: "lose", pos: "verb" },
+  { lesson: 17, kanji: null, kana: "なくします", meaning: "lose", pos: "verb" },
   { lesson: 17, kanji: "出します", kana: "だします", meaning: "hand in", pos: "verb" },
   { lesson: 17, kanji: "レポートを出します", kana: "レポートをだします", meaning: "hand in a report", pos: "phrase" },
   { lesson: 17, kanji: "払います", kana: "はらいます", meaning: "pay", pos: "verb" },

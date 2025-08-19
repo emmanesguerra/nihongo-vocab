@@ -35,7 +35,7 @@ export const lesson13 = [
   { lesson: 13, kanji: "週末", kana: "しゅうまつ", meaning: "weekend", pos: "noun" },
   { lesson: 13, kanji: null, kana: "～ごろ", meaning: "about (time)", pos: "suffix" },
   { lesson: 13, kanji: "何か", kana: "なにか", meaning: "something", pos: "noun" },
-  { lesson: 13, kanji: "どこか", kana: "どこか", meaning: "somewhere, some place", pos: "noun" },
+  { lesson: 13, kanji: null, kana: "どこか", meaning: "somewhere, some place", pos: "noun" },
   { lesson: 13, kanji: null, kana: "おなかがすきました", meaning: "(I'm) hungry", pos: "phrase" },
   { lesson: 13, kanji: null, kana: "おなかがいっぱいです", meaning: "(I'm) full", pos: "phrase" },
   { lesson: 13, kanji: null, kana: "のどがかわきました", meaning: "(I'm) thirsty", pos: "phrase" },
