@@ -63,7 +63,26 @@ import { lesson62 } from './Kanji/N4/lesson62'
 import { lesson63 } from './Kanji/N4/lesson63' 
 import { lesson64 } from './Kanji/N4/lesson64' 
 import { lesson65 } from './Kanji/N4/lesson65' 
-import { lesson66 } from './Kanji/IntroToKanjiNihongoals/lesson66'
+import { lesson66 } from './Kanji/IntroToKanjiNihonGoals/lesson66'
+import { lesson67 } from './Kanji/IntroToKanjiNihongoals/lesson67'
+import { lesson68 } from './Kanji/IntroToKanjiNihongoals/lesson68'
+import { lesson69 } from './Kanji/IntroToKanjiNihongoals/lesson69'
+import { lesson70 } from './Kanji/IntroToKanjiNihongoals/lesson70'
+import { lesson71 } from './Kanji/IntroToKanjiNihongoals/lesson71'
+import { lesson72 } from './Kanji/IntroToKanjiNihongoals/lesson72'
+import { lesson73 } from './Kanji/IntroToKanjiNihongoals/lesson73'
+import { lesson74 } from './Kanji/IntroToKanjiNihongoals/lesson74'
+import { lesson75 } from './Kanji/IntroToKanjiNihongoals/lesson75'
+import { lesson76 } from './Kanji/IntroToKanjiNihongoals/Lesson76'
+import { lesson77 } from './Kanji/IntroToKanjiNihongoals/Lesson77'
+import { lesson78 } from './Kanji/IntroToKanjiNihongoals/Lesson78'
+import { lesson79 } from './Kanji/IntroToKanjiNihongoals/Lesson79'
+import { lesson80 } from './Kanji/IntroToKanjiNihongoals/lesson80'
+import { lesson81 } from './Kanji/IntroToKanjiNihongoals/lesson81'
+import { lesson82 } from './Kanji/IntroToKanjiNihongoals/lesson82'
+import { lesson83 } from './Kanji/IntroToKanjiNihongoals/lesson83'
+import { lesson84 } from './Kanji/IntroToKanjiNihongoals/lesson84'
+import { lesson85 } from './Kanji/IntroToKanjiNihongoals/lesson85'
 
 export const vocabularies = [
   ...lesson1,
@@ -132,4 +151,23 @@ export const vocabularies = [
   ...lesson64,
   ...lesson65,
   ...lesson66,
+  ...lesson67,
+  ...lesson68,
+  ...lesson69,
+  ...lesson70,
+  ...lesson71,
+  ...lesson72,
+  ...lesson73,
+  ...lesson74,
+  ...lesson75,
+  ...lesson76,
+  ...lesson77,
+  ...lesson78,
+  ...lesson79,
+  ...lesson80, 
+  ...lesson81,
+  ...lesson82,
+  ...lesson83,
+  ...lesson84,
+  ...lesson85,
 ];

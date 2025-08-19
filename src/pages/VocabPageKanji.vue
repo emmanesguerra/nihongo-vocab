@@ -24,10 +24,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in filteredVocabularies" :key="index">
-                        <td @click="speak(item.kanji)" class="fw-bold fs-5" style="cursor: pointer;" >{{ item.kanji }}</td>
-                        <td @click="speak(item.onyomi)">{{ item.onyomi }}</td>
-                        <td @click="speak(item.kunyomi)">{{ item.kunyomi }}</td>
-                        <td class="text-start">{{ item.meaning }}</td>
+                        <td @click="speak(item.kanji)" class="fw-bold fs-3 " style="cursor: pointer;" >{{ item.kanji }}</td>
+                        <td @click="speak(item.onyomi)" class="centered">{{ item.onyomi }}</td>
+                        <td @click="speak(item.kunyomi)" class="centered">{{ item.kunyomi }}</td>
+                        <td class="text-start centered">{{ item.meaning }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -48,7 +48,7 @@ const selectedLesson = ref(1)
 const lessonRange = computed(() => {
     const set = route.query.set
     if (set === 'book1') return Array.from({ length: 5 }, (_, i) => i + 51) // 51–55
-    if (set === 'book2') return Array.from({ length: 11 }, (_, i) => i + 56) // 56–65
+    if (set === 'book2') return Array.from({ length: 10 }, (_, i) => i + 56) // 56–65
     return Array.from({ length: 15 }, (_, i) => i + 51) // default: full range 51–65
 })
 
