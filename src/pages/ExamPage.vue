@@ -1,32 +1,28 @@
 <template>
-    <div class="exam">
-        <div v-if="exam.currentQuestion" class="question-box">
-            <p class="question">
-                {{ exam.progress.index }}. {{ exam.currentQuestion.question }}
-            </p>
+    <main class="container text-center py-5">
+        <!-- Exam in progress -->
+        <div v-if="!exam.finished && exam.currentQuestion" class="question-box">
 
-            <ul class="choices">
-                <li v-for="(choice, i) in exam.currentQuestion.choices" :key="i" class="choice">
-                    <button type="button" :class="{ selected: selectedAnswer === choice }"
-                        @click="selectAnswer(choice)">
-                        {{ choice }}
-                    </button>
-                </li>
-            </ul>
+            <component :is="exam.currentQuestion.entry.pos === 'kanji' ? KanjiQuestion : RegularQuestion"
+                :question="exam.currentQuestion" :selected-answer="selectedAnswer" @select-answer="selectAnswer"
+                @submit="handleNext" />
 
-            <div class="nav-buttons">
-                <button @click="handleNext" :disabled="!selectedAnswer">
-                    Next
-                </button>
-            </div>
         </div>
-    </div>
+
+        <!-- Results -->
+        <div v-else class="result-box">
+            <Result />
+        </div>
+    </main>
 </template>
 
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
 import { useExamStore } from '@/stores/examStore'
+import Result from "@/components/Result.vue"
+import RegularQuestion from "@/components/RegularQuestion.vue"
+import KanjiQuestion from "@/components/KanjiQuestion.vue"
 
 const quizStore = useQuizStore()
 const exam = useExamStore()
@@ -38,8 +34,8 @@ onMounted(() => {
 })
 
 const selectedAnswer = computed({
-    get: () => exam.answers[exam.currentIndex] || null,
-    set: (val) => exam.saveAnswer(exam.currentIndex, val),
+    get: () => exam.currentQuestion?.userAnswer || null,
+    set: (val) => exam.saveAnswer(val),
 })
 
 function selectAnswer(choice) {
@@ -48,69 +44,9 @@ function selectAnswer(choice) {
 
 function handleNext() {
     if (exam.isLast) {
-        alert('Exam finished!')
-        console.log('Answers:', exam.answers)
+        exam.finished = true
     } else {
         exam.next()
     }
 }
 </script>
-
-<style scoped>
-.exam {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-family: sans-serif;
-}
-
-.question-box {
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    background: #f9f9f9;
-    text-align: center;
-}
-
-.question {
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-.choices {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-}
-
-.choice {
-    margin: 10px 0;
-}
-
-.choice button {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #2b2a2a;
-    background: #2b2a2a;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.choice button.selected {
-    background: #0084ff;
-}
-
-.choice button:hover {
-    background: #444;
-}
-
-.nav-buttons {
-    display: flex;
-    justify-content: center;
-}
-</style>

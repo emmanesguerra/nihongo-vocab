@@ -11,10 +11,9 @@ export function buildQuestions(totalQuestions, lessonRange) {
         const correctChoice = entry.kanji || entry.kana
 
         return {
-            question: entry.meaning,
+            entry: entry,
             answer: correctChoice,
             choices: generateChoices(pool, entry),
-            lesson: entry.lesson,
         }
     })
 }
