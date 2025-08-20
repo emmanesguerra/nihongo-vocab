@@ -3,7 +3,7 @@
         <!-- Exam in progress -->
         <div v-if="!exam.finished && exam.currentQuestion" class="question-box">
 
-            <component :is="exam.currentQuestion.entry.type === 'kanji' ? KanjiQuestion : RegularQuestion"
+            <component :is="exam.currentQuestion.entry.pos === 'kanji' ? KanjiQuestion : RegularQuestion"
                 :question="exam.currentQuestion" :selected-answer="selectedAnswer" @select-answer="selectAnswer"
                 @submit="handleNext" />
 
