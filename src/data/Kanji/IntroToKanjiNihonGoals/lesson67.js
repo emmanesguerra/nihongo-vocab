@@ -1,6 +1,6 @@
 export const lesson67 = [
   // --- 一 ---
-  { lesson: 67, kanji: "一", kana: null, meaning: "one", pos: "kanji" },
+  { lesson: 67, kanji: "一", kana: null, onyomi: "イチ, イツ", kunyomi: "ひと(つ), ひと", meaning: "one", pos: "kanji" },
   { lesson: 67, kanji: "一", kana: "いち", meaning: "one", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "一日", kana: "いちにち", meaning: "one day", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "一日", kana: "ついたち", meaning: "first day of the month", pos: "Kanji Vocab" },
@@ -10,7 +10,7 @@ export const lesson67 = [
   { lesson: 67, kanji: "一度も", kana: "いちども", meaning: "never, not once", pos: "Kanji Vocab" },
 
   // --- 二 ---
-  { lesson: 67, kanji: "二", kana: null, meaning: "two", pos: "kanji" },
+  { lesson: 67, kanji: "二", kana: null, onyomi: "ニ, ジ", kunyomi: "ふた(つ), ふた", meaning: "two", pos: "kanji" },
   { lesson: 67, kanji: "二", kana: "に", meaning: "two", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "二日", kana: "ふつか", meaning: "two days, 2nd day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "二十日", kana: "はつか", meaning: "twentieth day of the month", pos: "Kanji Vocab" },
@@ -18,50 +18,50 @@ export const lesson67 = [
   { lesson: 67, kanji: "二人", kana: "ふたり", meaning: "two persons", pos: "Kanji Vocab" },
 
   // --- 三 ---
-  { lesson: 67, kanji: "三", kana: null, meaning: "three", pos: "kanji" },
+  { lesson: 67, kanji: "三", kana: null, onyomi: "サン", kunyomi: "み, みっ(つ)", meaning: "three", pos: "kanji" },
   { lesson: 67, kanji: "三", kana: "さん", meaning: "three", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "三日", kana: "みっか", meaning: "three days, 3rd day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "三つ", kana: "みっつ", meaning: "three (things)", pos: "Kanji Vocab" },
 
   // --- 四 ---
-  { lesson: 67, kanji: "四", kana: null, meaning: "four", pos: "kanji" },
-  { lesson: 67, kanji: "四", kana: "よん、し", meaning: "four", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "四", kana: null, onyomi: "シ", kunyomi: "よ, よっ, よん, よ(つ)", meaning: "four", pos: "kanji" },
+  { lesson: 67, kanji: "四", kana: "よん, し", meaning: "four", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "四日", kana: "よっか", meaning: "four days, 4th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "四つ", kana: "よっつ", meaning: "four (things)", pos: "Kanji Vocab" },
 
   // --- 五 ---
-  { lesson: 67, kanji: "五", kana: null, meaning: "five", pos: "kanji" },
+  { lesson: 67, kanji: "五", kana: null, onyomi: "ゴ", kunyomi: "いつ, いつ(つ)", meaning: "five", pos: "kanji" },
   { lesson: 67, kanji: "五", kana: "ご", meaning: "five", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "五日", kana: "いつか", meaning: "five days, 5th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "五つ", kana: "いつつ", meaning: "five (things)", pos: "Kanji Vocab" },
 
   // --- 六 ---
-  { lesson: 67, kanji: "六", kana: null, meaning: "six", pos: "kanji" },
+  { lesson: 67, kanji: "六", kana: null, onyomi: "ロク", kunyomi: "む, むい, むっ(つ)", meaning: "six", pos: "kanji" },
   { lesson: 67, kanji: "六", kana: "ろく", meaning: "six", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "六日", kana: "むいか", meaning: "six days, 6th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "六つ", kana: "むっつ", meaning: "six (things)", pos: "Kanji Vocab" },
 
   // --- 七 ---
-  { lesson: 67, kanji: "七", kana: null, meaning: "seven", pos: "kanji" },
-  { lesson: 67, kanji: "七", kana: "なな、しち", meaning: "seven", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "七", kana: null, onyomi: "シチ", kunyomi: "なな, なな(つ), なの", meaning: "seven", pos: "kanji" },
+  { lesson: 67, kanji: "七", kana: "なな, しち", meaning: "seven", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "七日", kana: "なのか", meaning: "seven days, 7th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "七つ", kana: "ななつ", meaning: "seven (things)", pos: "Kanji Vocab" },
 
   // --- 八 ---
-  { lesson: 67, kanji: "八", kana: null, meaning: "eight", pos: "kanji" },
+  { lesson: 67, kanji: "八", kana: null, onyomi: "ハチ", kunyomi: "や, よう, やっ(つ)", meaning: "eight", pos: "kanji" },
   { lesson: 67, kanji: "八", kana: "はち", meaning: "eight", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "八日", kana: "ようか", meaning: "eight days, 8th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "八つ", kana: "やっつ", meaning: "eight (things)", pos: "Kanji Vocab" },
 
   // --- 九 ---
-  { lesson: 67, kanji: "九", kana: null, meaning: "nine", pos: "kanji" },
-  { lesson: 67, kanji: "九", kana: "きゅう、く", meaning: "nine", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "九", kana: null, onyomi: "キュウ, ク", kunyomi: "ここの(つ), ここの", meaning: "nine", pos: "kanji" },
+  { lesson: 67, kanji: "九", kana: "きゅう, く", meaning: "nine", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "九日", kana: "ここのか", meaning: "nine days, 9th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "九つ", kana: "ここのつ", meaning: "nine (things)", pos: "Kanji Vocab" },
 
   // --- 十 ---
-  { lesson: 67, kanji: "十", kana: null, meaning: "ten", pos: "kanji" },
-  { lesson: 67, kanji: "十", kana: "じゅう、じゅ", meaning: "ten", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "十", kana: null, onyomi: "ジュウ, ジュ", kunyomi: "とお, と", meaning: "ten", pos: "kanji" },
+  { lesson: 67, kanji: "十", kana: "じゅう, じゅ", meaning: "ten", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "十日", kana: "とおか", meaning: "ten days, 10th day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "二十日", kana: "はつか", meaning: "twentieth day of the month", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "十四日", kana: "じゅうよっか", meaning: "fourteen days, 14th day of the month", pos: "Kanji Vocab" },
@@ -69,11 +69,10 @@ export const lesson67 = [
   { lesson: 67, kanji: "二十歳", kana: "はたち", meaning: "twenty years old", pos: "Kanji Vocab" },
 
   // --- 百 ---
-  { lesson: 67, kanji: "百", kana: null, meaning: "hundred", pos: "kanji" },
-  { lesson: 67, kanji: "八百屋", kana: "ひゃく", meaning: "green grocer, produce, market", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "百", kana: null, onyomi: "ヒャク", kunyomi: "-", meaning: "hundred", pos: "kanji" },
   { lesson: 67, kanji: "百", kana: "ひゃく", meaning: "one hundred", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "二百", kana: "にひゃく", meaning: "two hundred", pos: "Kanji Vocab" },
-  { lesson: 67, kanji: "三百", kana: "さんぴゃく", meaning: "three hundred", pos: "Kanji Vocab" },
+  { lesson: 67, kanji: "三百", kana: "さんびゃく", meaning: "three hundred", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "四百", kana: "よんひゃく", meaning: "four hundred", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "五百", kana: "ごひゃく", meaning: "five hundred", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "六百", kana: "ろっぴゃく", meaning: "six hundred", pos: "Kanji Vocab" },
@@ -82,7 +81,7 @@ export const lesson67 = [
   { lesson: 67, kanji: "九百", kana: "きゅうひゃく", meaning: "nine hundred", pos: "Kanji Vocab" },
 
   // --- 千 ---
-  { lesson: 67, kanji: "千", kana: null, meaning: "thousand", pos: "kanji" },
+  { lesson: 67, kanji: "千", kana: null, onyomi: "セン", kunyomi: "ち", meaning: "thousand", pos: "kanji" },
   { lesson: 67, kanji: "千", kana: "せん", meaning: "thousand", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "二千", kana: "にせん", meaning: "two thousand", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "三千", kana: "さんぜん", meaning: "three thousand", pos: "Kanji Vocab" },
@@ -94,11 +93,11 @@ export const lesson67 = [
   { lesson: 67, kanji: "九千", kana: "きゅうせん", meaning: "nine thousand", pos: "Kanji Vocab" },
 
   // --- 万 ---
-  { lesson: 67, kanji: "万", kana: null, meaning: "ten thousand", pos: "kanji" },
+  { lesson: 67, kanji: "万", kana: null, onyomi: "マン, バン", kunyomi: "-", meaning: "ten thousand", pos: "kanji" },
   { lesson: 67, kanji: "一万", kana: "いちまん", meaning: "ten thousand", pos: "Kanji Vocab" },
 
   // --- 円 ---
-  { lesson: 67, kanji: "円", kana: null, meaning: "circle, round, yen", pos: "kanji" },
+  { lesson: 67, kanji: "円", kana: null, onyomi: "エン", kunyomi: "まる(い)", meaning: "circle, round, yen", pos: "kanji" },
   { lesson: 67, kanji: "～円", kana: "～えん", meaning: "yen", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "一万円", kana: "いちまんえん", meaning: "ten thousand yen", pos: "Kanji Vocab" },
   { lesson: 67, kanji: "十万円", kana: "じゅうまんえん", meaning: "one hundred thousand yen", pos: "Kanji Vocab" },
