@@ -1,8 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import VocabSummaryPage from '../pages/VocabSummaryPage.vue'
-import VocabPageLesson from '../pages/VocabPageLesson.vue'
-import VocabPageKanji from '../pages/VocabPageKanji.vue'
 import VocabPage from '../pages/VocabPage.vue'
 import ExamPage from '../pages/ExamPage.vue'
 import HistoryPage from '../pages/HistoryPage.vue'

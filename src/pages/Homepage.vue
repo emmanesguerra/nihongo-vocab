@@ -60,7 +60,7 @@
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 n5-row">
+            <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 kanji-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Intro Kanji 66–85
             </router-link>
         </div>
@@ -142,5 +142,9 @@ function startExam() {
 
 .n4-row {
     background-color: #d3f9d8;
+}
+
+.kanji-row {
+    background-color: #f9dad3;
 }
 </style>

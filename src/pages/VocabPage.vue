@@ -14,34 +14,26 @@
 
         <div class="table-responsive" style="max-height: 75vh; overflow-y: auto;">
             <table class="table table-striped table-bordered mb-0">
-                <thead class="table-dark sticky-top">
-                    <tr >
-                        <th rowspan="2" class="centered">Kanji</th>
-                        <th colspan="2" class="border-0">Kana</th>
-                        <th rowspan="2" class="centered">Meaning</th>
-                    </tr>
-                    <tr>
-                        <th class="small" style="font-size: 12px;">Onyomi</th>
-                        <th class="small" style="font-size: 12px;">Kunyomi</th>
-                    </tr>
-                </thead>
+                <component :is="headerComponent"></component>
                 <tbody>
-                    <tr v-for="(item, index) in filteredVocabularies" :key="index">
-                        <td @click="speak(item.kanji)" class="fw-bold" style="cursor: pointer;">
+                    <tr v-for="(item, index) in filteredVocabularies" :key="index"
+                        :class="{ 'kanji-row': item.pos === 'kanji' }">
+                        <td @click="speak(item.kanji)" class="centered fw-bold" style="cursor: pointer;">
                             {{ item.kanji }}
                         </td>
 
                         <template v-if="item.pos === 'kanji'">
-                            <td @click="speak(item.onyomi)" class="centered">{{ item.onyomi }}</td>
-                            <td @click="speak(item.kunyomi)" class="centered">{{ item.kunyomi }}</td>
+                            <td @click="speak(item.onyomi)" class="centered" style="cursor: pointer;">{{ item.onyomi }}</td>
+                            <td @click="speak(item.kunyomi)" class="centered" style="cursor: pointer;">{{ item.kunyomi }}</td>
                         </template>
                         <template v-else>
-                            <td colspan="2" @click="speak(item.kana)" class="centered">{{ item.kana }}</td>
+                            <td colspan="2" @click="speak(item.kana)" class="centered" style="cursor: pointer;">{{ item.kana }}</td>
                         </template>
 
                         <td class="text-start centered text-capitalize">{{ item.meaning }}</td>
                     </tr>
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -53,6 +45,9 @@ import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { vocabularies } from '@/data/vocabularies.js'
 import { speak } from '@/core/utils/speech'
+import RegularHeader from '@/components/tableHeader/Regular.vue'
+import KanjiHeader from '@/components/tableHeader/Kanji.vue'
+import BothHeader from '@/components/tableHeader/Both.vue'
 
 const route = useRoute()
 const selectedLesson = ref(1)
@@ -85,4 +80,19 @@ const filteredVocabularies = computed(() => {
 })
 
 const totalItems = computed(() => filteredVocabularies.value.length)
+
+const headerComponent = computed(() => {
+    if (selectedLesson.value <= 50) return RegularHeader
+    if (selectedLesson.value >= 51 && selectedLesson.value <= 65) return KanjiHeader
+    return BothHeader
+})
 </script>
+
+<style scoped>
+::v-deep(.table .kanji-row) {    
+  --bs-table-bg: #fffdf5;       /* lighter background */
+  --bs-table-striped-bg: #faf3e4;
+  --bs-table-hover-bg: #f8f0da;
+  --bs-table-border-color: #e8e0c5;
+}
+</style>
