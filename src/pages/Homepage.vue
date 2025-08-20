@@ -52,11 +52,16 @@
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50 n5-row">
+            <router-link to="/vocab-list?set=book3" class="btn btn-outline-secondary w-50 n5-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 51–55
             </router-link>
-            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50 n4-row">
+            <router-link to="/vocab-list?set=book4" class="btn btn-outline-secondary w-50 n4-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 56–65
+            </router-link>
+        </div>
+        <div class="mt-2 d-flex justify-content-center gap-2">
+            <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 n5-row">
+                <i class="bi bi-journal-bookmark me-1"></i> Intro Kanji 66–85
             </router-link>
         </div>
     </main>
