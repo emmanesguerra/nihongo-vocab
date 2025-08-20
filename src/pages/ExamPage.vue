@@ -1,277 +1,116 @@
 <template>
-    <div class="container py-4" v-if="currentQuestion">
-        <h4 class="mb-3">Question {{ currentIndex + 1 }} of {{ totalQuestions }}</h4>
+    <div class="exam">
+        <div v-if="exam.currentQuestion" class="question-box">
+            <p class="question">
+                {{ exam.progress.index }}. {{ exam.currentQuestion.question }}
+            </p>
 
-        <!-- KANJI QUESTION DISPLAY -->
-        <div v-if="currentQuestion.type === 'kanji'" class="card">
-            <p class="text-center">Meaning: {{ currentQuestion.meaning }}</p>
-            <p class="text-center">Onyomi: {{ currentQuestion.onyomi }}</p>
-            <p class="text-center">Kunyomi: {{ currentQuestion.kunyomi }}</p>
-
-            <div class="row row-cols-2 row-cols-md-3 g-3 mt-3">
-                <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                    <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
-                        @click="() => { selectedAnswer = choice; }" :class="[
-                            'custom-btn',
-                            'w-100',
-                            'p-2',
-                            'text-wrap',
-                            'd-flex',
-                            'align-items-center',
-                            'justify-content-center',
-                            { 'bg-primary text-white': selectedAnswer === choice }
-                        ]" style="min-height: 50px">
+            <ul class="choices">
+                <li v-for="(choice, i) in exam.currentQuestion.choices" :key="i" class="choice">
+                    <button type="button" :class="{ selected: selectedAnswer === choice }"
+                        @click="selectAnswer(choice)">
                         {{ choice }}
                     </button>
-                </div>
-            </div>
+                </li>
+            </ul>
 
-            <div class="mt-4 text-center">
-                <button class="btn btn-success btn-lg" :disabled="!selectedAnswer" @click="submitAnswer">
-                    Submit Answer
+            <div class="nav-buttons">
+                <button @click="handleNext" :disabled="!selectedAnswer">
+                    Next
                 </button>
             </div>
         </div>
-
-        <!-- NORMAL VOCAB/PHRASE DISPLAY -->
-        <div v-else class="card">
-            <h2 class="mb-4 text-center">{{ currentQuestion.meaning }}</h2>
-
-            <div class="row row-cols-2 row-cols-md-3 g-3">
-                <div v-for="(choice, i) in currentQuestion.choices" :key="i" class="col d-flex">
-                    <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
-                        @click="() => { selectedAnswer = choice; speak(choice) }" :class="[
-                            'custom-btn',
-                            'w-100',
-                            'p-2',
-                            'text-wrap',
-                            'd-flex',
-                            'align-items-center',
-                            'justify-content-center',
-                            { 'bg-primary text-white': selectedAnswer === choice }
-                        ]" style="min-height: 50px">
-                        {{ choice }}
-                    </button>
-                </div>
-            </div>
-
-            <div class="mt-4 text-center">
-                <button class="btn btn-success btn-lg" :disabled="!selectedAnswer" @click="submitAnswer">
-                    Submit Answer
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- REVIEW SECTION -->
-    <div class="container py-4" v-else>
-        <h3 class="mb-3">Exam Finished <i class="bi bi-check-circle-fill text-success"></i></h3>
-        <p class="lead">Your score: <strong>{{ score }} / {{ totalQuestions }}</strong></p>
-
-        <div class="mt-4">
-            <h5>Review:</h5>
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle text-center">
-                    <thead class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Meaning</th>
-                            <th>Your Answer</th>
-                            <th>Correct Answer</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(q, i) in questions" :key="i">
-                            <td>{{ i + 1 }}</td>
-                            <td>{{ q.meaning }}</td>
-                            <td @click="speak(q.userAnswer)"
-                                :class="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana) ? 'text-success' : 'text-danger'">
-                                {{ q.userAnswer }}
-                            </td>
-                            <td @click="speak(q.type === 'kanji' ? q.kanji : q.kana)">
-                                {{ q.type === 'kanji' ? q.kanji : q.kana }}
-                            </td>
-                            <td>
-                                <i v-if="q.userAnswer === (q.type === 'kanji' ? q.kanji : q.kana)"
-                                    class="bi bi-check-circle-fill text-success"></i>
-                                <i v-else class="bi bi-x-circle-fill text-danger"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <router-link to="/" class="btn btn-secondary mt-4"><i class="bi bi-house-door-fill"></i> Back to
-            Home</router-link>
     </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter, onBeforeRouteLeave } from 'vue-router'
+import { computed, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
-import { vocabularies } from '@/data/vocabularies.js'
-import { speak } from '@/core/utils/speech'
+import { useExamStore } from '@/stores/examStore'
 
 const quizStore = useQuizStore()
-const currentIndex = ref(0)
-const score = ref(0)
-const questions = ref([])
-const touchedIndex = ref(null)
-const selectedAnswer = ref(null)
-const choicesCount = 5
-const totalQuestions = computed(() => quizStore.settings.totalQuestions)
-const currentQuestion = computed(() => questions.value[currentIndex.value])
-const isExamFinished = ref(false)
+const exam = useExamStore()
 
 onMounted(() => {
-    const [start, end] = quizStore.settings.lessonRange
-    const filtered = vocabularies.filter(v => v.lesson >= start && v.lesson <= end)
-
-    let selected = shuffle(filtered)
-
-    if (selected.length < totalQuestions.value) {
-        const needed = totalQuestions.value - selected.length
-        const extras = []
-        const pool = filtered.length ? filtered : vocabularies
-
-        while (extras.length < needed) {
-            const random = pool[Math.floor(Math.random() * pool.length)]
-            extras.push({ ...random })
-        }
-
-        selected = [...selected, ...extras]
+    if (!exam.started) {
+        exam.init(quizStore.settings)
     }
-
-    selected = shuffle(selected).slice(0, totalQuestions.value)
-
-    questions.value = selected.map(q => {
-        let sameTypeChoices = filtered.filter(v =>
-            (q.type === 'kanji' ? v.kanji !== q.kanji : v.kana !== q.kana) &&
-            v.type === q.type
-        )
-
-        if (sameTypeChoices.length < choicesCount) {
-            const fallback = filtered.filter(v =>
-                (q.type === 'kanji' ? v.kanji !== q.kanji : v.kana !== q.kana) &&
-                v.type !== q.type
-            )
-            const needed = (choicesCount + 1) - sameTypeChoices.length
-            const extra = shuffle(fallback).slice(0, needed)
-            sameTypeChoices = [...sameTypeChoices, ...extra]
-        }
-
-        const wrongChoices = shuffle(sameTypeChoices).slice(0, choicesCount).map(v =>
-            q.type === 'kanji' ? v.kanji : v.kana
-        )
-
-        const allChoices = shuffle([
-            q.type === 'kanji' ? q.kanji : q.kana,
-            ...wrongChoices
-        ])
-
-        return {
-            ...q,
-            choices: allChoices,
-            userAnswer: '',
-        }
-    })
-
-    window.addEventListener('beforeunload', handleBeforeUnload)
 })
 
-onBeforeUnmount(() => {
-    window.removeEventListener('beforeunload', handleBeforeUnload)
+const selectedAnswer = computed({
+    get: () => exam.answers[exam.currentIndex] || null,
+    set: (val) => exam.saveAnswer(exam.currentIndex, val),
 })
 
-function handleBeforeUnload(e) {
-    if (!isExamFinished.value) {
-        e.preventDefault()
-        e.returnValue = ''
-    }
+function selectAnswer(choice) {
+    selectedAnswer.value = choice
 }
 
-// Vue Router navigation guard (for back/forward/route change)
-onBeforeRouteLeave((to, from, next) => {
-    if (!isExamFinished.value) {
-        const answer = window.confirm('You are about to leave the exam. Your progress will be lost. Continue?')
-        if (answer) {
-            next()
-        } else {
-            next(false)
-        }
+function handleNext() {
+    if (exam.isLast) {
+        alert('Exam finished!')
+        console.log('Answers:', exam.answers)
     } else {
-        next()
+        exam.next()
     }
-})
-
-function submitAnswer() {
-    if (!currentQuestion.value || selectedAnswer.value === null) return
-
-    currentQuestion.value.userAnswer = selectedAnswer.value
-
-    if (
-        (currentQuestion.value.type === 'kanji' && selectedAnswer.value === currentQuestion.value.kanji) ||
-        (currentQuestion.value.type !== 'kanji' && selectedAnswer.value === currentQuestion.value.kana)
-    ) {
-        score.value++
-    }
-
-    currentIndex.value++
-    selectedAnswer.value = null
-
-    if (currentIndex.value >= totalQuestions.value) {
-        isExamFinished.value = true
-        window.removeEventListener('beforeunload', handleBeforeUnload)
-        saveExamResult()
-    }
-}
-
-function shuffle(array) {
-    const result = array.slice()
-    for (let i = result.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-            ;[result[i], result[j]] = [result[j], result[i]]
-    }
-    return result
-}
-
-function saveExamResult() {
-    const result = {
-        date: new Date().toISOString(),
-        score: score.value,
-        total: totalQuestions.value,
-        lessonRange: quizStore.settings.lessonRange,
-        questions: questions.value.map(q => ({
-            meaning: q.meaning,
-            correctAnswer: q.type === 'kanji' ? q.kanji : q.kana,
-            userAnswer: q.userAnswer,
-            choices: q.choices,
-            type: q.type,
-            kanji: q.kanji,
-            kana: q.kana,
-        })),
-    }
-
-    const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]')
-    const updated = [...existing, result].slice(-10)
-
-    localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
 </script>
 
 <style scoped>
-.custom-btn {
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    color: #495057;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 1rem;
+.exam {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: sans-serif;
 }
 
-.card {
-    padding: 1rem;
+.question-box {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.question {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.choices {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.choice {
+    margin: 10px 0;
+}
+
+.choice button {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #2b2a2a;
+    background: #2b2a2a;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.choice button.selected {
+    background: #0084ff;
+}
+
+.choice button:hover {
+    background: #444;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
 }
 </style>

@@ -65,6 +65,7 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted  } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
+import { useExamStore } from '@/stores/examStore'
 import { registerVoiceChecker  } from '@/core/utils/speech'
 
 onMounted(() => {
@@ -77,6 +78,7 @@ onMounted(() => {
 
 const router = useRouter()
 const quizStore = useQuizStore()
+const exam = useExamStore()
 
 const numQuestions = ref(20)
 const lessonStart = ref()
@@ -86,7 +88,6 @@ const errorMessage = ref('')
 function startExam() {
     errorMessage.value = ''
 
-    // Basic check: Start must be valid
     if (
         lessonStart.value === undefined ||
         isNaN(lessonStart.value) ||
@@ -97,7 +98,6 @@ function startExam() {
         return
     }
 
-    // If End is filled, validate it too
     if (
         lessonEnd.value !== undefined &&
         lessonEnd.value !== null &&
@@ -111,7 +111,6 @@ function startExam() {
         return
     }
 
-    // If both Start and End are given, check order
     if (
         lessonEnd.value !== undefined &&
         lessonEnd.value !== null &&
@@ -126,6 +125,7 @@ function startExam() {
     const end = (lessonEnd.value !== undefined && lessonEnd.value !== null) ? lessonEnd.value : start
 
     quizStore.setSettings(numQuestions.value, [start, end])
+    exam.reset()
     router.push('/exam')
 }
 </script>
