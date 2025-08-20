@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(count, type) in typeCounts" :key="type">
-                        <td>{{ type.toUpperCase() }}</td>
+                        <td>{{ (type as string).toUpperCase() }}</td>
                         <td>{{ count }}</td>
                     </tr>
                 </tbody>
@@ -68,7 +68,7 @@
 
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { vocabularies } from '@/data/vocabularies.js'
+import { vocabularies } from '../data/vocabularies.js'
 
 const route = useRoute()
 
@@ -81,7 +81,7 @@ const filteredVocabularies = computed(() => {
 const typeCounts = computed(() => {
     const counts = {}
     for (const item of filteredVocabularies.value) {
-        const type = item.type || 'Unknown'
+        const type = item.pos || 'Unknown'
         counts[type] = (counts[type] || 0) + 1
     }
     return counts
@@ -103,7 +103,7 @@ const getLessonLevel = (lesson) => {
     if (num >= 51 && num <= 55) return 'N5 Kanji'
     if (num >= 56 && num <= 65) return 'N4 Kanji'
 
-    return 'Unknown'
+    return 'Kanji Vocabulary'
 }
 
 const getLevelClass = (lesson: number) => {

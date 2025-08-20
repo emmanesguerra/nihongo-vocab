@@ -15,7 +15,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label"><strong>Vocabulary</strong>【1~50】<br /> <strong>Kanji</strong>【51~65】</label>
+                    <label class="form-label"><strong>Vocabulary</strong>【1~50】<br />
+                        <strong>Kanji</strong>【51~65】</label>
                     <div class="d-flex gap-2">
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
@@ -51,11 +52,16 @@
             </router-link>
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
-            <router-link to="/kanji-list?set=book1" class="btn btn-outline-secondary w-50 n5-row">
+            <router-link to="/vocab-list?set=book3" class="btn btn-outline-secondary w-50 n5-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 51–55
             </router-link>
-            <router-link to="/kanji-list?set=book2" class="btn btn-outline-secondary w-50 n4-row">
+            <router-link to="/vocab-list?set=book4" class="btn btn-outline-secondary w-50 n4-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Kanji 56–65
+            </router-link>
+        </div>
+        <div class="mt-2 d-flex justify-content-center gap-2">
+            <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 kanji-row">
+                <i class="bi bi-journal-bookmark me-1"></i> Intro Kanji 66–85
             </router-link>
         </div>
     </main>
@@ -63,9 +69,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref, onMounted  } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
-import { registerVoiceChecker  } from '@/core/utils/speech'
+import { useExamStore } from '@/stores/examStore'
+import { registerVoiceChecker } from '@/core/utils/speech'
 
 onMounted(() => {
     registerVoiceChecker((hasJapanese) => {
@@ -77,55 +84,49 @@ onMounted(() => {
 
 const router = useRouter()
 const quizStore = useQuizStore()
+const exam = useExamStore()
 
-const numQuestions = ref(20)
+const numQuestions = ref(50)
 const lessonStart = ref()
 const lessonEnd = ref()
 const errorMessage = ref('')
 
 function startExam() {
     errorMessage.value = ''
+    const maxLesson = 85
 
-    // Basic check: Start must be valid
+    // Validate START lesson
     if (
-        lessonStart.value === undefined ||
+        lessonStart.value == null ||
         isNaN(lessonStart.value) ||
         lessonStart.value < 1 ||
-        lessonStart.value > 65
+        lessonStart.value > maxLesson
     ) {
-        errorMessage.value = 'Please enter a valid START lesson (1–65).'
+        errorMessage.value = `Please enter a valid START lesson (1–${maxLesson}).`
         return
     }
 
-    // If End is filled, validate it too
+    // Validate END lesson if provided
     if (
-        lessonEnd.value !== undefined &&
-        lessonEnd.value !== null &&
-        (
-            isNaN(lessonEnd.value) ||
-            lessonEnd.value < 1 ||
-            lessonEnd.value > 65
-        )
+        lessonEnd.value != null &&
+        (isNaN(lessonEnd.value) || lessonEnd.value < 1 || lessonEnd.value > maxLesson)
     ) {
-        errorMessage.value = 'END lesson must be a number between 1 and 65.'
+        errorMessage.value = `END lesson must be a number between 1 and ${maxLesson}.`
         return
     }
 
-    // If both Start and End are given, check order
-    if (
-        lessonEnd.value !== undefined &&
-        lessonEnd.value !== null &&
-        lessonStart.value > lessonEnd.value
-    ) {
+    // Check logical order
+    if (lessonEnd.value != null && lessonStart.value > lessonEnd.value) {
         errorMessage.value = 'START lesson must be less than or equal to END lesson.'
         return
     }
 
     // Determine final range
     const start = lessonStart.value
-    const end = (lessonEnd.value !== undefined && lessonEnd.value !== null) ? lessonEnd.value : start
+    const end = lessonEnd.value != null ? lessonEnd.value : start
 
     quizStore.setSettings(numQuestions.value, [start, end])
+    exam.reset()
     router.push('/exam')
 }
 </script>
@@ -134,11 +135,16 @@ function startExam() {
 .nwroman {
     font-family: 'NotoSerifJP', Times, serif;
 }
+
 .n5-row {
-  background-color: #ffe5b4; 
+    background-color: #ffe5b4;
 }
 
 .n4-row {
-  background-color: #d3f9d8;
+    background-color: #d3f9d8;
+}
+
+.kanji-row {
+    background-color: #f9dad3;
 }
 </style>
