@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(count, type) in typeCounts" :key="type">
-                        <td>{{ type.toUpperCase() }}</td>
+                        <td>{{ (type as string).toUpperCase() }}</td>
                         <td>{{ count }}</td>
                     </tr>
                 </tbody>
@@ -68,7 +68,7 @@
 
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { vocabularies } from '@/data/vocabularies.js'
+import { vocabularies } from '../data/vocabularies.js'
 
 const route = useRoute()
 

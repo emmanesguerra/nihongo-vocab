@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onBeforeUnmount } from 'vue'
+import { computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
 import { useExamStore } from '@/stores/examStore'
 import Result from "@/components/Result.vue"
@@ -80,5 +80,33 @@ function handleNext() {
     } else {
         exam.next()
     }
+}
+
+watch(() => exam.finished, (finished) => {
+    if (finished) saveExamResult()
+})
+
+function saveExamResult() {
+    const correctCount = exam.questions.filter(q => q.userAnswer === q.answer).length
+
+    const result = {
+        date: new Date().toISOString(),
+        score: correctCount,
+        total: quizStore.settings.totalQuestions,
+        lessonRange: quizStore.settings.lessonRange,
+        questions: exam.questions.map(q => ({
+            meaning: q.entry.meaning,
+            correctAnswer: q.answer,
+            userAnswer: q.userAnswer,
+            choices: q.choices,
+            type: q.entry.type,
+            kanji: q.entry.kanji,
+            kana: q.entry.kana,
+        })),
+    }
+
+    const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]')
+    const updated = [...existing, result].slice(-10) // only keep latest 10
+    localStorage.setItem('quizHistory', JSON.stringify(updated))
 }
 </script>

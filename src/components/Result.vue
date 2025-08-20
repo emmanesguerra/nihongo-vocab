@@ -10,7 +10,7 @@
 
         <!-- Table -->
         <div class="table-responsive mt-4">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered align-middle">
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
@@ -20,12 +20,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(q, index) in examStore.questions" :key="index"
-                        :class="q.userAnswer === q.answer ? 'table-success' : 'table-danger'">
-                        <td>{{ index + 1 }}</td>
+                    <tr v-for="(q, i) in examStore.questions" :key="i">
+                        <td>{{ i + 1 }}</td>
                         <td>{{ q.entry.meaning }}</td>
-                        <td>{{ q.userAnswer ?? '—' }}</td>
-                        <td>{{ q.answer }}</td>
+                        <td @click="speak(q.userAnswer)"
+                            :class="q.userAnswer === q.answer ? 'text-success' : 'text-danger'">
+                            {{ q.userAnswer }}
+                        </td>
+                        <td @click="speak(q.answer)">{{ q.answer }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -34,7 +36,7 @@
         <!-- Back Button -->
         <div class="mt-4">
             <router-link to="/" class="btn btn-secondary">
-                ⬅ Back to Home
+                <i class="bi bi-house-door-fill"></i> Back to Home
             </router-link>
         </div>
     </div>
@@ -44,6 +46,7 @@
 import { computed } from 'vue'
 import { useExamStore } from '@/stores/examStore'
 import { useQuizStore } from '@/stores/quizStore'
+import { speak } from '@/core/utils/speech'
 
 const quizStore = useQuizStore()
 const examStore = useExamStore()
