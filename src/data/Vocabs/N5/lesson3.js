@@ -33,12 +33,12 @@ export const lesson3 = [
   { lesson: 3, kanji: "何階", kana: "なんがい", meaning: "what floor", pos: "interrogative" },
   { lesson: 3, kanji: "～円", kana: "～えん", meaning: "yen", pos: "counter" },
   { lesson: 3, kanji: null, kana: "いくら", meaning: "how much", pos: "interrogative" },
-  { lesson: 3, kanji: "百", kana: "ひゃく", meaning: "hundred", pos: "number" },
-  { lesson: 3, kanji: "千", kana: "せん", meaning: "thousand", pos: "number" },
-  { lesson: 3, kanji: "万", kana: "まん", meaning: "ten thousand", pos: "number" },
-  { lesson: 3, kanji: null, kana: "すみません", meaning: "excuse me / I'm sorry", pos: "expression" },
-  { lesson: 3, kanji: null, kana: "～でございます", meaning: "(polite form of 'desu')", pos: "expression" },
+  { lesson: 3, kanji: "百", kana: "ひゃく", meaning: "hundred", pos: "suffix" },
+  { lesson: 3, kanji: "千", kana: "せん", meaning: "thousand", pos: "suffix" },
+  { lesson: 3, kanji: "万", kana: "まん", meaning: "ten thousand", pos: "suffix" },
+  { lesson: 3, kanji: null, kana: "すみません", meaning: "excuse me / I'm sorry", pos: "phrase" },
+  { lesson: 3, kanji: null, kana: "～でございます", meaning: "(polite form of 'desu')", pos: "phrase" },
   { lesson: 3, kanji: null, kana: "～をみせてください", meaning: "please show me ~", pos: "phrase" },
-  { lesson: 3, kanji: null, kana: "じゃ", meaning: "well, then, in that case", pos: "expression" },
+  { lesson: 3, kanji: null, kana: "じゃ", meaning: "well, then, in that case", pos: "phrase" },
   { lesson: 3, kanji: null, kana: "～をください", meaning: "give me ~, please.", pos: "phrase" }
 ];

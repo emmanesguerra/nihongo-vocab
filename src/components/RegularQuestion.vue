@@ -4,19 +4,21 @@
 
         <div class="row row-cols-2 row-cols-md-3 g-3">
             <div v-for="(choice, i) in question.choices" :key="i" class="col d-flex">
-                <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null"
-                    @click="$emit('select-answer', choice)" :class="[
-                        'btn',
-                        'btn-light',
-                        'border',
-                        'w-100',
-                        'p-2',
-                        'text-wrap',
-                        'd-flex',
-                        'align-items-center',
-                        'justify-content-center',
-                        { 'bg-primary text-white': selectedAnswer === choice }
-                    ]" style="min-height: 50px">
+                <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null" @click="
+                    $emit('select-answer', choice);
+                    speak(choice);
+                " :class="[
+                    'btn',
+                    'btn-light',
+                    'border',
+                    'w-100',
+                    'p-2',
+                    'text-wrap',
+                    'd-flex',
+                    'align-items-center',
+                    'justify-content-center',
+                    { 'bg-primary text-white': selectedAnswer === choice }
+                ]" style="min-height: 50px">
                     {{ choice }}
                 </button>
             </div>
@@ -31,6 +33,9 @@
 </template>
 
 <script setup>
+
+import { speak } from '@/core/utils/speech'
+
 const props = defineProps({
     question: Object,
     selectedAnswer: String,

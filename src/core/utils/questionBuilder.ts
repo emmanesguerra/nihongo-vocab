@@ -23,37 +23,28 @@ function generateChoices(pool, correctItem) {
     const correctPOS = correctItem.pos;
     const numberOfChoices = 6;
 
-    // Same POS, same lesson
-    const samePOSPool = pool.filter((item) => item.pos === correctPOS);
-
-    let wrongChoices = samePOSPool
+    // Step 1: same POS in current pool
+    let wrongChoices = pool
+        .filter((v) => v.pos === correctPOS && (v.kanji || v.kana) !== correct)
         .map((v) => v.kanji || v.kana)
-        .filter((c) => c !== correct);
-
-    // If not enough, add from same POS across ALL lessons
-    if (wrongChoices.length < numberOfChoices - 1) {
-        const additional = pool
-            .filter((item) => item.pos === correctPOS)
-            .map((v) => v.kanji || v.kana)
-            .filter((c) => c !== correct && !wrongChoices.includes(c));
-
-        wrongChoices = [...wrongChoices, ...additional];
-    }
-
-    // If still not enough, fill with random from entire pool (different POS allowed)
-    if (wrongChoices.length < numberOfChoices - 1) {
-        const additional = pool
-            .map((v) => v.kanji || v.kana)
-            .filter((c) => c !== correct && !wrongChoices.includes(c));
-
-        wrongChoices = [...wrongChoices, ...additional];
-    }
-
-    // Finally, select the required number of wrong choices
-    const selected = wrongChoices
         .sort(() => Math.random() - 0.5)
         .slice(0, numberOfChoices - 1);
 
-    // Shuffle again with the correct answer included
-    return [...selected, correct].sort(() => Math.random() - 0.5);
+    // Step 2: calculate how many more we need
+    const needed = numberOfChoices - 1 - wrongChoices.length;
+
+    if (needed > 0) {
+        // Step 3: pick from full database
+        const fullPool = vocabularies
+            .map((v) => v.kanji || v.kana)
+            .filter((c) => c !== correct && !wrongChoices.includes(c));
+
+        // shuffle fullPool and pick only 'needed' items
+        const additional = fullPool.sort(() => Math.random() - 0.5).slice(0, needed);
+
+        wrongChoices = [...wrongChoices, ...additional];
+    }
+
+    // Step 4: shuffle final choices including correct
+    return [...wrongChoices, correct].sort(() => Math.random() - 0.5);
 }
