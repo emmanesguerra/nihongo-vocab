@@ -15,7 +15,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label"><strong>Vocabulary</strong>【1~50】<br /> <strong>Kanji</strong>【51~65】</label>
+                    <label class="form-label"><strong>Vocabulary</strong>【1~50】<br />
+                        <strong>Kanji</strong>【51~65】</label>
                     <div class="d-flex gap-2">
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
@@ -63,10 +64,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref, onMounted  } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quizStore'
 import { useExamStore } from '@/stores/examStore'
-import { registerVoiceChecker  } from '@/core/utils/speech'
+import { registerVoiceChecker } from '@/core/utils/speech'
 
 onMounted(() => {
     registerVoiceChecker((hasJapanese) => {
@@ -87,42 +88,37 @@ const errorMessage = ref('')
 
 function startExam() {
     errorMessage.value = ''
+    const maxLesson = 85
 
+    // Validate START lesson
     if (
-        lessonStart.value === undefined ||
+        lessonStart.value == null ||
         isNaN(lessonStart.value) ||
         lessonStart.value < 1 ||
-        lessonStart.value > 65
+        lessonStart.value > maxLesson
     ) {
-        errorMessage.value = 'Please enter a valid START lesson (1–65).'
+        errorMessage.value = `Please enter a valid START lesson (1–${maxLesson}).`
         return
     }
 
+    // Validate END lesson if provided
     if (
-        lessonEnd.value !== undefined &&
-        lessonEnd.value !== null &&
-        (
-            isNaN(lessonEnd.value) ||
-            lessonEnd.value < 1 ||
-            lessonEnd.value > 65
-        )
+        lessonEnd.value != null &&
+        (isNaN(lessonEnd.value) || lessonEnd.value < 1 || lessonEnd.value > maxLesson)
     ) {
-        errorMessage.value = 'END lesson must be a number between 1 and 65.'
+        errorMessage.value = `END lesson must be a number between 1 and ${maxLesson}.`
         return
     }
 
-    if (
-        lessonEnd.value !== undefined &&
-        lessonEnd.value !== null &&
-        lessonStart.value > lessonEnd.value
-    ) {
+    // Check logical order
+    if (lessonEnd.value != null && lessonStart.value > lessonEnd.value) {
         errorMessage.value = 'START lesson must be less than or equal to END lesson.'
         return
     }
 
     // Determine final range
     const start = lessonStart.value
-    const end = (lessonEnd.value !== undefined && lessonEnd.value !== null) ? lessonEnd.value : start
+    const end = lessonEnd.value != null ? lessonEnd.value : start
 
     quizStore.setSettings(numQuestions.value, [start, end])
     exam.reset()
@@ -134,11 +130,12 @@ function startExam() {
 .nwroman {
     font-family: 'NotoSerifJP', Times, serif;
 }
+
 .n5-row {
-  background-color: #ffe5b4; 
+    background-color: #ffe5b4;
 }
 
 .n4-row {
-  background-color: #d3f9d8;
+    background-color: #d3f9d8;
 }
 </style>
