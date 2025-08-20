@@ -16,7 +16,8 @@
 
                 <div class="mb-3">
                     <label class="form-label"><strong>Vocabulary</strong>【1~50】<br />
-                        <strong>Kanji</strong>【51~65】</label>
+                        <strong>Kanji</strong>【51~65】<br />
+                        <strong>Intro to Kanji (NihonGoal)</strong>【66~85】</label>
                     <div class="d-flex gap-2">
                         <input type="number" v-model.number="lessonStart" class="form-control" min="1" max="50"
                             placeholder="Start">
@@ -61,7 +62,7 @@
         </div>
         <div class="mt-2 d-flex justify-content-center gap-2">
             <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 kanji-row">
-                <i class="bi bi-journal-bookmark me-1"></i> Intro Kanji 66–85
+                <i class="bi bi-journal-bookmark me-1"></i> Intro To Kanji 66–85
             </router-link>
         </div>
     </main>
