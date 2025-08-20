@@ -19,20 +19,41 @@ export function buildQuestions(totalQuestions, lessonRange) {
 }
 
 function generateChoices(pool, correctItem) {
+    const correct = correctItem.kanji || correctItem.kana;
+    const correctPOS = correctItem.pos;
+    const numberOfChoices = 6;
 
-    const correct = correctItem.kanji || correctItem.kana
-    const correctPOS = correctItem.pos
-    const numberOfChoices = 6
+    // Same POS, same lesson
+    const samePOSPool = pool.filter((item) => item.pos === correctPOS);
 
-    const samePOSPool = pool.filter((item) => item.pos === correctPOS)
-
-    const wrongChoices = samePOSPool
+    let wrongChoices = samePOSPool
         .map((v) => v.kanji || v.kana)
-        .filter((c) => c !== correct)
+        .filter((c) => c !== correct);
 
+    // If not enough, add from same POS across ALL lessons
+    if (wrongChoices.length < numberOfChoices - 1) {
+        const additional = pool
+            .filter((item) => item.pos === correctPOS)
+            .map((v) => v.kanji || v.kana)
+            .filter((c) => c !== correct && !wrongChoices.includes(c));
+
+        wrongChoices = [...wrongChoices, ...additional];
+    }
+
+    // If still not enough, fill with random from entire pool (different POS allowed)
+    if (wrongChoices.length < numberOfChoices - 1) {
+        const additional = pool
+            .map((v) => v.kanji || v.kana)
+            .filter((c) => c !== correct && !wrongChoices.includes(c));
+
+        wrongChoices = [...wrongChoices, ...additional];
+    }
+
+    // Finally, select the required number of wrong choices
     const selected = wrongChoices
         .sort(() => Math.random() - 0.5)
-        .slice(0, (numberOfChoices - 1))
+        .slice(0, numberOfChoices - 1);
 
-    return [...selected, correct].sort(() => Math.random() - 0.5)
+    // Shuffle again with the correct answer included
+    return [...selected, correct].sort(() => Math.random() - 0.5);
 }
