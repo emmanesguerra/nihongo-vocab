@@ -86,7 +86,7 @@ const router = useRouter()
 const quizStore = useQuizStore()
 const exam = useExamStore()
 
-const numQuestions = ref(5)
+const numQuestions = ref(50)
 const lessonStart = ref()
 const lessonEnd = ref()
 const errorMessage = ref('')

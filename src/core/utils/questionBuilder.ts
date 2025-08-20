@@ -5,11 +5,31 @@ export function buildQuestions(totalQuestions, lessonRange) {
         (item) => item.lesson >= lessonRange[0] && item.lesson <= lessonRange[1]
     )
 
-    const shuffled = [...pool].sort(() => Math.random() - 0.5)
+    if (pool.length === 0) return [] // no vocabs available
 
-    return shuffled.slice(0, totalQuestions).map((entry) => {
+    let questions: typeof pool = []
+
+    // how many full rounds we can distribute equally
+    const fullRounds = Math.floor(totalQuestions / pool.length)
+    const remainder = totalQuestions % pool.length
+
+    // repeat each vocab entry for the full rounds
+    for (let i = 0; i < fullRounds; i++) {
+        questions.push(...pool)
+    }
+
+    // add extra random picks for the remainder
+    const extra = [...pool]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, remainder)
+    questions.push(...extra)
+
+    // shuffle the final question set
+    const shuffled = [...questions].sort(() => Math.random() - 0.5)
+
+    // map into quiz format
+    return shuffled.map((entry) => {
         const correctChoice = entry.kanji || entry.kana
-
         return {
             entry: entry,
             answer: correctChoice,
