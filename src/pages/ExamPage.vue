@@ -87,7 +87,7 @@ watch(() => exam.finished, (finished) => {
 })
 
 function saveExamResult() {
-    const correctCount = exam.questions.filter(q => q.userAnswer === q.answer).length
+    const correctCount = exam.questions.filter(q => (q.userAnswer.kanji || q.userAnswer.kana)  === q.answer).length
 
     const result = {
         date: new Date().toISOString(),
@@ -99,7 +99,7 @@ function saveExamResult() {
             correctAnswer: q.answer,
             userAnswer: q.userAnswer,
             choices: q.choices,
-            type: q.entry.type,
+            type: q.entry.pos,
             kanji: q.entry.kanji,
             kana: q.entry.kana,
         })),
