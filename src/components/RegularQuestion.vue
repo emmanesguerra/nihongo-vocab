@@ -6,7 +6,7 @@
             <div v-for="(choice, i) in question.choices" :key="i" class="col d-flex">
                 <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null" @click="
                     $emit('select-answer', choice);
-                    speak(choice);
+                    // speak(choice);
                 " :class="[
                     'btn',
                     'btn-light',
