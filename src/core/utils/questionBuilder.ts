@@ -43,10 +43,10 @@ function generateChoices(pool, correctItem) {
     const correctPOS = correctItem.pos;
     const numberOfChoices = 6;
 
-    // Step 1: same POS in current pool
+    // Step 1: same POS in current pool (exclude correct one)
     let wrongChoices = pool
         .filter((v) => v.pos === correctPOS && (v.kanji || v.kana) !== correct)
-        .map((v) => v.kanji || v.kana)
+        .map((v) => ({ kanji: v.kanji, kana: v.kana, pos: v.pos }))
         .sort(() => Math.random() - 0.5)
         .slice(0, numberOfChoices - 1);
 
@@ -56,8 +56,12 @@ function generateChoices(pool, correctItem) {
     if (needed > 0) {
         // Step 3: pick from full database
         const fullPool = vocabularies
-            .map((v) => v.kanji || v.kana)
-            .filter((c) => c !== correct && !wrongChoices.includes(c));
+            .filter(
+                (v) =>
+                    (v.kanji || v.kana) !== correct &&
+                    !wrongChoices.some((w) => w.kanji === v.kanji && w.kana === v.kana)
+            )
+            .map((v) => ({ kanji: v.kanji, kana: v.kana, pos: v.pos }));
 
         // shuffle fullPool and pick only 'needed' items
         const additional = fullPool.sort(() => Math.random() - 0.5).slice(0, needed);
@@ -66,5 +70,8 @@ function generateChoices(pool, correctItem) {
     }
 
     // Step 4: shuffle final choices including correct
-    return [...wrongChoices, correct].sort(() => Math.random() - 0.5);
+    return [
+        ...wrongChoices,
+        { kanji: correctItem.kanji, kana: correctItem.kana, pos: correctItem.pos }
+    ].sort(() => Math.random() - 0.5);
 }

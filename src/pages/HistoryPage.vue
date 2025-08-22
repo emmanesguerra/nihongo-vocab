@@ -34,11 +34,13 @@
                                     <tr v-for="(q, i) in entry.questions" :key="i">
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ q.meaning }}</td>
-                                        <td @click="speak(q.userAnswer)"
-                                            :class="q.userAnswer === q.correctAnswer ? 'text-success' : 'text-danger'">
-                                            {{ q.userAnswer }}
+                                        <td @click="speak(q.userAnswer.pos === 'kanji' ? q.userAnswer.kanji : q.userAnswer.kana)"
+                                            :class="(q.userAnswer.kanji || q.userAnswer.kana)  === q.correctAnswer ? 'text-success' : 'text-danger'">
+                                            {{ q.userAnswer.kanji || q.userAnswer.kana }}
                                         </td>
-                                        <td @click="speak(q.correctAnswer)">{{ q.correctAnswer }}</td>
+                                        <td @click="speak(q.type === 'kanji' ? q.kanji : q.kana)">
+                                            {{ q.correctAnswer }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

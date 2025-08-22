@@ -18,7 +18,7 @@
                 <tbody>
                     <tr v-for="(item, index) in filteredVocabularies" :key="index"
                         :class="{ 'kanji-row': item.pos === 'kanji' }">
-                        <td @click="speak(item.kanji)" class="centered fw-bold" style="cursor: pointer;">
+                        <td @click="speak(item.pos === 'kanji' ? item.kanji : item.kana)"  class="centered fw-bold" style="cursor: pointer;">
                             {{ item.kanji }}
                         </td>
 

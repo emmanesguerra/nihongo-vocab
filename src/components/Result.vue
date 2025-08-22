@@ -23,11 +23,13 @@
                     <tr v-for="(q, i) in examStore.questions" :key="i">
                         <td>{{ i + 1 }}</td>
                         <td>{{ q.entry.meaning }}</td>
-                        <td @click="speak(q.userAnswer)"
-                            :class="q.userAnswer === q.answer ? 'text-success' : 'text-danger'">
-                            {{ q.userAnswer }}
+                        <td @click="speak(q.userAnswer.pos === 'kanji' ? q.userAnswer.kanji : q.userAnswer.kana)"
+                            :class="(q.userAnswer.kanji || q.userAnswer.kana)  === q.answer ? 'text-success' : 'text-danger'">
+                            {{ q.userAnswer.kanji || q.userAnswer.kana }}
                         </td>
-                        <td @click="speak(q.answer)">{{ q.answer }}</td>
+                        <td @click="speak(q.entry.pos === 'kanji' ? q.entry.kanji : q.entry.kana)">
+                            {{ q.answer }}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -52,7 +54,7 @@ const quizStore = useQuizStore()
 const examStore = useExamStore()
 
 const correctCount = computed(() =>
-    examStore.questions.filter(q => q.userAnswer === q.answer).length
+    examStore.questions.filter(q => (q.userAnswer.kanji || q.userAnswer.kana)  === q.answer).length
 )
 
 const lessonLabel = computed(() => {

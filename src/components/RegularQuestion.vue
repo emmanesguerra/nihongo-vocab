@@ -19,7 +19,7 @@
                     'justify-content-center',
                     { 'bg-primary text-white': selectedAnswer === choice }
                 ]" style="min-height: 50px">
-                    {{ choice }}
+                    {{ choice.kanji || choice.kana }}
                 </button>
             </div>
         </div>
@@ -35,12 +35,17 @@
 <script setup>
 
 import { speak } from '@/core/utils/speech'
+import { ref } from 'vue' 
 
 const props = defineProps({
     question: Object,
-    selectedAnswer: String,
-    touchedIndex: Number
+    selectedAnswer: {
+        type: Object,
+        default: () => null
+    }
 })
 
 const emits = defineEmits(["select-answer", "submit"])
+
+const touchedIndex = ref(null)
 </script>
