@@ -11,7 +11,13 @@
             </select>
         </div>
         <div class="mb-2 d-flex align-items-center">
-            <input type="text" v-model="searchQuery" class="form-control w-auto" placeholder="Search..." />
+            <div class="position-relative">
+                <input type="text" v-model="searchQuery" class="form-control pe-5" placeholder="Search..." />
+                <i v-if="searchQuery"
+                    class="bi bi-x-circle-fill text-muted position-absolute top-50 end-0 translate-middle-y me-2"
+                    style="cursor: pointer;" @click="clearSearch"></i>
+            </div>
+
             <p v-if="searchQuery" class="small m-3">
                 Find {{ filteredVocabularies.length }} Items
             </p>
@@ -33,7 +39,7 @@
                             <td @click="speak(item.onyomi)" class="centered" style="cursor: pointer;">{{ item.onyomi }}
                             </td>
                             <td @click="speak(item.kunyomi)" class="centered" style="cursor: pointer;">{{ item.kunyomi
-                            }}</td>
+                                }}</td>
                         </template>
                         <template v-else>
                             <td colspan="2" @click="speak(item.kana)" class="centered" style="cursor: pointer;">{{
@@ -112,6 +118,10 @@ const headerComponent = computed(() => {
     if (selectedLesson.value >= 51 && selectedLesson.value <= 65) return KanjiHeader
     return BothHeader
 })
+
+function clearSearch() {
+    searchQuery.value = ''
+}
 </script>
 
 <style scoped>
