@@ -197,6 +197,6 @@
 
 <style scoped>
 table tr td{
-    font-size: 2em;
+    font-size: 1.5em;
 }
 </style>
