@@ -64,6 +64,9 @@
             <router-link to="/vocab-list?set=book5" class="btn btn-outline-secondary w-50 kanji-row">
                 <i class="bi bi-journal-bookmark me-1"></i> Intro To Kanji (NihonGoal) 66–85
             </router-link>
+            <router-link to="/alphabet" class="btn btn-outline-secondary w-50 kanji-row">
+                <i class="bi bi-journal-bookmark me-1"></i> Hiragana Katakana Table
+            </router-link>
         </div>
     </main>
 </template>
