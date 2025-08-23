@@ -1,22 +1,21 @@
 <template>
-    <div class="container py-4">
-        <div class="mb-4 d-flex align-items-center">
+    <div class="container">
+        <div class="mb-2 d-flex align-items-center">
             <router-link to="/" class="btn btn-outline-secondary me-3" title="Back to Home">
                 <i class="bi bi-house-door-fill"></i>
             </router-link>
-            <select id="lesson-select" v-model="selectedLesson" class="form-select d-inline w-auto ms-3">
+            <select id="lesson-select" v-model="selectedLesson" class="form-select d-inline w-auto">
                 <option v-for="n in lessonRange" :key="n" :value="n">
                     Lesson {{ n }}
                 </option>
             </select>
-
-            <input type="text" v-model="searchQuery" class="form-control ms-3 w-auto" placeholder="Search..."
-                style="min-width: 200px;" />
         </div>
-
-            <p v-if="searchQuery" class="text-muted">
-                Showing {{ filteredVocabularies.length }} / {{ totalItems }} items
+        <div class="mb-2 d-flex align-items-center">
+            <input type="text" v-model="searchQuery" class="form-control w-auto" placeholder="Search..." />
+            <p v-if="searchQuery" class="small m-3">
+                Find {{ filteredVocabularies.length }} Items
             </p>
+        </div>
 
         <div class="table-responsive" style="max-height: 75vh; overflow-y: auto;">
             <table class="table table-striped table-bordered mb-0">
@@ -34,7 +33,7 @@
                             <td @click="speak(item.onyomi)" class="centered" style="cursor: pointer;">{{ item.onyomi }}
                             </td>
                             <td @click="speak(item.kunyomi)" class="centered" style="cursor: pointer;">{{ item.kunyomi
-                                }}</td>
+                            }}</td>
                         </template>
                         <template v-else>
                             <td colspan="2" @click="speak(item.kana)" class="centered" style="cursor: pointer;">{{
