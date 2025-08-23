@@ -1,6 +1,6 @@
 export const lesson1 = [
-  { lesson: 1, kanji: null, kana: "わたし", meaning: "I", pos: "noun" },
-  { lesson: 1, kanji: null, kana: "わたしたち", meaning: "we", pos: "noun" },
+  { lesson: 1, kanji: "私", kana: "わたし", meaning: "I", pos: "noun" },
+  { lesson: 1, kanji: "私達", kana: "わたしたち", meaning: "we", pos: "noun" },
   { lesson: 1, kanji: null, kana: "あなた", meaning: "you", pos: "noun" },
   { lesson: 1, kanji: "あの人", kana: "あのひと", meaning: "that person, he, she", pos: "noun" },
   { lesson: 1, kanji: "あの方", kana: "あのかた", meaning: "that person, he, she (more polite)", pos: "noun" },

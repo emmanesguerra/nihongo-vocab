@@ -1,6 +1,7 @@
 <template>
     <thead class="table-dark sticky-top">
         <tr>
+            <th class="centered"></th>
             <th class="centered">Kanji</th>
             <th colspan="2" class="centered">Kana</th>
             <th class="centered">Meaning</th>

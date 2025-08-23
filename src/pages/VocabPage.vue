@@ -4,13 +4,19 @@
             <router-link to="/" class="btn btn-outline-secondary me-3" title="Back to Home">
                 <i class="bi bi-house-door-fill"></i>
             </router-link>
-            <h3 class="mb-0">Vocab Lists ({{ totalItems }})</h3>
             <select id="lesson-select" v-model="selectedLesson" class="form-select d-inline w-auto ms-3">
                 <option v-for="n in lessonRange" :key="n" :value="n">
                     Lesson {{ n }}
                 </option>
             </select>
+
+            <input type="text" v-model="searchQuery" class="form-control ms-3 w-auto" placeholder="Search..."
+                style="min-width: 200px;" />
         </div>
+
+            <p v-if="searchQuery" class="text-muted">
+                Showing {{ filteredVocabularies.length }} / {{ totalItems }} items
+            </p>
 
         <div class="table-responsive" style="max-height: 75vh; overflow-y: auto;">
             <table class="table table-striped table-bordered mb-0">
@@ -18,16 +24,21 @@
                 <tbody>
                     <tr v-for="(item, index) in filteredVocabularies" :key="index"
                         :class="{ 'kanji-row': item.pos === 'kanji' }">
-                        <td @click="speak(item.pos === 'kanji' ? item.kanji : item.kana)"  class="centered fw-bold" style="cursor: pointer;">
+                        <td class="centered text-capitalize">{{ searchQuery ? "L" + item.lesson : (index + 1) }}</td>
+                        <td @click="speak(item.pos === 'kanji' ? item.kanji : item.kana)" class="centered fw-bold"
+                            style="cursor: pointer;">
                             {{ item.kanji }}
                         </td>
 
                         <template v-if="item.pos === 'kanji'">
-                            <td @click="speak(item.onyomi)" class="centered" style="cursor: pointer;">{{ item.onyomi }}</td>
-                            <td @click="speak(item.kunyomi)" class="centered" style="cursor: pointer;">{{ item.kunyomi }}</td>
+                            <td @click="speak(item.onyomi)" class="centered" style="cursor: pointer;">{{ item.onyomi }}
+                            </td>
+                            <td @click="speak(item.kunyomi)" class="centered" style="cursor: pointer;">{{ item.kunyomi
+                                }}</td>
                         </template>
                         <template v-else>
-                            <td colspan="2" @click="speak(item.kana)" class="centered" style="cursor: pointer;">{{ item.kana }}</td>
+                            <td colspan="2" @click="speak(item.kana)" class="centered" style="cursor: pointer;">{{
+                                item.kana }}</td>
                         </template>
 
                         <td class="text-start centered text-capitalize">{{ item.meaning }}</td>
@@ -51,6 +62,7 @@ import BothHeader from '@/components/tableHeader/Both.vue'
 
 const route = useRoute()
 const selectedLesson = ref(1)
+const searchQuery = ref("")
 
 const lessonRange = computed(() => {
     const set = route.query.set
@@ -76,7 +88,22 @@ watch(
 
 // Filter vocabularies by selected lesson
 const filteredVocabularies = computed(() => {
-    return vocabularies.filter(v => v.lesson === selectedLesson.value)
+    // if no search, only show selected lesson
+    if (!searchQuery.value.trim()) {
+        return vocabularies.filter(v => v.lesson === selectedLesson.value)
+    }
+
+    // if searching, search ALL lessons
+    const query = searchQuery.value.toLowerCase()
+    return vocabularies.filter(v => {
+        return (
+            (v.kanji && v.kanji.includes(query)) ||
+            (v.kana && v.kana.includes(query)) ||
+            (v.meaning && v.meaning.toLowerCase().includes(query)) ||
+            (v.onyomi && v.onyomi.includes(query)) ||
+            (v.kunyomi && v.kunyomi.includes(query))
+        )
+    })
 })
 
 const totalItems = computed(() => filteredVocabularies.value.length)
@@ -89,10 +116,11 @@ const headerComponent = computed(() => {
 </script>
 
 <style scoped>
-::v-deep(.table .kanji-row) {    
-  --bs-table-bg: #fffdf5;       /* lighter background */
-  --bs-table-striped-bg: #faf3e4;
-  --bs-table-hover-bg: #f8f0da;
-  --bs-table-border-color: #e8e0c5;
+::v-deep(.table .kanji-row) {
+    --bs-table-bg: #fffdf5;
+    /* lighter background */
+    --bs-table-striped-bg: #faf3e4;
+    --bs-table-hover-bg: #f8f0da;
+    --bs-table-border-color: #e8e0c5;
 }
 </style>
