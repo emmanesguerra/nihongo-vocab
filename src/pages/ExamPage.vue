@@ -4,7 +4,11 @@
         <div v-if="!exam.finished && exam.currentQuestion" class="question-box">
 
             <component :is="exam.currentQuestion.entry.pos === 'kanji' ? KanjiQuestion : RegularQuestion"
-                :question="exam.currentQuestion" :selected-answer="selectedAnswer" @select-answer="selectAnswer"
+                :question="exam.currentQuestion" 
+                :question-number="exam.currentIndex + 1"
+                :total-questions="exam.questions.length" 
+                :selected-answer="selectedAnswer" 
+                @select-answer="selectAnswer"
                 @submit="handleNext" />
 
         </div>
@@ -87,7 +91,7 @@ watch(() => exam.finished, (finished) => {
 })
 
 function saveExamResult() {
-    const correctCount = exam.questions.filter(q => (q.userAnswer.kanji || q.userAnswer.kana)  === q.answer).length
+    const correctCount = exam.questions.filter(q => (q.userAnswer.kanji || q.userAnswer.kana) === q.answer).length
 
     const result = {
         date: new Date().toISOString(),

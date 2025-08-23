@@ -1,5 +1,8 @@
 <template>
     <div class="card">
+        <h5 class="text-muted text-center small">
+            Question {{ questionNumber }} of {{ totalQuestions }}
+        </h5>
         <p class="text-center">Meaning: {{ question.entry.meaning  }}<br />
             Onyomi: {{ question.entry.onyomi }}<br />
             Kunyomi: {{ question.entry.kunyomi }}</p>
@@ -40,7 +43,9 @@ const props = defineProps({
     selectedAnswer: {
         type: Object,
         default: () => null
-    }
+    },
+    questionNumber: Number,
+    totalQuestions: Number
 })
 
 const emits = defineEmits(["select-answer", "submit"])
