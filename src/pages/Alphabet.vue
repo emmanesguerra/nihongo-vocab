@@ -1,8 +1,8 @@
 <template>
-    <div class="container my-4">
-        <h4 class="mt-4">Hiragana</h4>
+    <div class="container py-4">
+        <h4 class="">Hiragana</h4>
         <div class="table-responsive">
-            <table class="table table-bordered text-center align-middle">
+            <table class="table table-bordered text-center align-middle" style="width: 100%;">
                 <thead class="table-dark">
                     <tr>
                         <th></th>

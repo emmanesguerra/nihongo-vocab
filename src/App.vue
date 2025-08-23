@@ -17,9 +17,15 @@ watch(
   (newPath) => {
     if (newPath.startsWith('/vocab')) {
       document.body.classList.remove('default-layout')
+      document.body.classList.remove('alpha-layout')
       document.body.classList.add('vocab-layout')
+    } else if (newPath.startsWith('/alphabet')) {
+      document.body.classList.remove('vocab-layout')
+      document.body.classList.remove('default-layout')
+      document.body.classList.add('alpha-layout')
     } else {
       document.body.classList.remove('vocab-layout')
+      document.body.classList.remove('alpha-layout')
       document.body.classList.add('default-layout')
     }
   },

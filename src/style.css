@@ -32,6 +32,7 @@ body.default-layout {
   font-family: NotoSansJP;
 }
 
+body.alpha-layout,
 body.vocab-layout {
   margin: 0;
   display: block;
