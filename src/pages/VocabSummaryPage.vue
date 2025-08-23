@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-4">
+    <div class="container py-3">
         <div class="mb-4 d-flex align-items-center">
             <router-link to="/" class="btn btn-outline-secondary me-3" title="Back to Home">
                 <i class="bi bi-house-door-fill"></i>
