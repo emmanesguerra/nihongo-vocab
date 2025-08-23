@@ -194,3 +194,9 @@
 <script setup>
 // No JS needed for now, static chart
 </script>
+
+<style scoped>
+table tr td{
+    font-size: 2em;
+}
+</style>
