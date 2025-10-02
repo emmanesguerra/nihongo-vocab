@@ -7,7 +7,7 @@
 
         <div class="row row-cols-2 row-cols-md-3 g-3">
             <div v-for="(choice, i) in question.choices" :key="i" class="col d-flex">
-                <button @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null" @click="
+                <div @pointerdown="touchedIndex = i" @pointerup="touchedIndex = null" @click="
                     $emit('select-answer', choice);
                 // speak(choice);
                 " :class="[
@@ -18,12 +18,14 @@
                     'p-2',
                     'text-wrap',
                     'd-flex',
+                    'flex-column',
                     'align-items-center',
                     'justify-content-center',
                     { 'bg-primary text-white': selectedAnswer === choice }
                 ]" style="min-height: 50px">
-                    {{ choice.kanji || choice.kana }}
-                </button>
+                    <small v-if="choice.kanji" style="font-size: 0.7em;">{{ choice.kana }}</small>
+                    <span>{{ choice.kanji || choice.kana }}</span>
+                </div>
             </div>
         </div>
 

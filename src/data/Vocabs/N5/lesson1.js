@@ -32,7 +32,7 @@ export const lesson1 = [
   { lesson: 1, kanji: "お名前は", kana: "おなまえは", meaning: "May I have your name?", pos: "interrogative" },
   { lesson: 1, kanji: "初めまして", kana: "はじめまして", meaning: "How do you do? (introducing oneself for the first time)", pos: "phrase" },
   { lesson: 1, kanji: "どうぞよろしく（お願いします）", kana: "どうぞよろしく（おねがいします）", meaning: "Pleased to meet you", pos: "phrase" },
-  { lesson: 1, kanji: "こちらは～さんです", kana: "こちらは～さんです", meaning: "This is Mr./Ms. ~", pos: "phrase" },
+  { lesson: 1, kanji: null, kana: "こちらは～さんです", meaning: "This is Mr./Ms. ~", pos: "phrase" },
   { lesson: 1, kanji: "～から来ました", kana: "～からきました", meaning: "I came (come) from ~", pos: "phrase" },
   { lesson: 1, kanji: null, kana: "アメリカ", meaning: "U.S.A.", pos: "country" },
   { lesson: 1, kanji: null, kana: "イギリス", meaning: "U.K.", pos: "country" },
