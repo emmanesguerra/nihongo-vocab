@@ -5,37 +5,43 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   base: '/nihongo-vocab/',
+
   plugins: [
     vue(),
+
     VitePWA({
       registerType: 'autoUpdate',
+
       manifest: {
-        name: 'Nihongo Vocab',
-        short_name: 'NihongoVocab',
+        name: 'Nihongo Wheel',
+        short_name: 'NihongoWheel',
         description: 'Japanese Vocabulary Practice App',
         background_color: '#fff',
-        theme_color: '#1976d2',  // your preferred theme color
+        theme_color: '#1976d2',
+
         icons: [
           {
-            src: 'web-app-manifest-192x192.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'web-app-manifest-512x512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },
         ],
       },
+
       workbox: {
         // You can add runtime caching rules here if needed
       },
     }),
   ],
+
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 })
